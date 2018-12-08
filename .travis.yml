@@ -1,0 +1,10 @@
+language: python
+python:
+  - "2.7"
+before_install:
+  - mv .travis-secrets.yaml secrets.yaml
+install:
+  - pip install esphomeyaml
+script:
+  - esphomeyaml smartmeter.yaml config
+  - esphomeyaml smartmeter.yaml compile

@@ -1,0 +1,38 @@
+esphomeyaml:
+  name: smartmeter
+  platform: ESP8266
+  board: nodemcuv2
+  use_custom_code: True
+
+wifi:
+  ssid: !secret home_wifi_ssid
+  password: !secret home_wifi_password
+
+mqtt:
+  broker: !secret home_mqtt_broker
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+status_led:
+  pin:
+    number: D4
+    inverted: True
+
+logger:
+  level: INFO
+
+ota:
+
+sensor:
+  - platform: wifi_signal
+    name: WiFi Signal
+  - platform: uptime
+    name: Uptime Sensor
+  - platform: dht
+    model: DHT22
+    pin: GPIO14
+    temperature:
+      name: Meterkast Temperatuur
+    humidity:
+      name: Meterkast Luchtvochtigheid
+
