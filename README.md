@@ -1,2 +1,2 @@
 # esphomeyaml-Configuration
-My main esphomeyaml configuration
+Please see the generated [GitHub Pages](http://alexmekkering.github.io/esphomeyaml)
