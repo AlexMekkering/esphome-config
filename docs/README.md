@@ -16,4 +16,5 @@ Next, we setup a virtual environment with `virtualenv venv`
 In a virtual environment (`. venv/bin/activate`) call `pip install esphomeyaml`.
 
 # Knowledge base
-* tbd
+* [Powering sensors](PoweringSensors.md)
+
