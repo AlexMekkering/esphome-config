@@ -1,8 +1,9 @@
+---
 esphomeyaml:
   name: smartmeter
   platform: ESP8266
   board: nodemcuv2
-  use_custom_code: True
+  use_custom_code: true
 
 wifi:
   ssid: !secret home_wifi_ssid
@@ -16,7 +17,7 @@ mqtt:
 status_led:
   pin:
     number: D4
-    inverted: True
+    inverted: true
 
 logger:
   level: INFO
@@ -35,4 +36,3 @@ sensor:
       name: Meterkast Temperatuur
     humidity:
       name: Meterkast Luchtvochtigheid
-
