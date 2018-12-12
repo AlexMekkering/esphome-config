@@ -5,7 +5,9 @@ python:
 before_install:
   - mv .travis-secrets.yaml secrets.yaml
 install:
+  - pip install yamllint
   - pip install esphomeyaml
 script:
+  - yamllint .
   - esphomeyaml smartmeter.yaml config
   - esphomeyaml smartmeter.yaml compile
