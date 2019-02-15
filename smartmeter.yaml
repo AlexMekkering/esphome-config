@@ -37,7 +37,8 @@ sensor:
       name: Meterkast Luchtvochtigheid
   - platform: custom
     lambda: |-
-      auto smartmeter_sensor = new SmartMeterSensor((char *)"Smartmeter Power Consumption", 12, 10000, 1000.0);
+      auto smartmeter_sensor = new SmartMeterSensor(
+          (char *)"Smartmeter Power Consumption", 12, 10000, 1000.0);
       App.register_component(smartmeter_sensor);
       return {smartmeter_sensor};
     sensors:
