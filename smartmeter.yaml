@@ -3,16 +3,15 @@ esphomeyaml:
   name: smartmeter
   platform: ESP8266
   board: nodemcuv2
-  use_custom_code: true
+  includes:
+    - smartmeter.h
 
 wifi:
   ssid: !secret home_wifi_ssid
   password: !secret home_wifi_password
 
-mqtt:
-  broker: !secret home_mqtt_broker
-  username: !secret mqtt_username
-  password: !secret mqtt_password
+api:
+  password: !secret api_password
 
 status_led:
   pin:
@@ -26,9 +25,9 @@ ota:
 
 sensor:
   - platform: wifi_signal
-    name: WiFi Signal
+    name: Smartmeter WiFi Signal
   - platform: uptime
-    name: Uptime Sensor
+    name: Smartmeter Uptime Sensor
   - platform: dht
     model: DHT22
     pin: GPIO14
@@ -36,3 +35,10 @@ sensor:
       name: Meterkast Temperatuur
     humidity:
       name: Meterkast Luchtvochtigheid
+  - platform: custom
+    lambda: |-
+      auto smartmeter_sensor = new SmartMeterSensor((char *)"Smartmeter Power Consumption", 12, 10000, 1000.0);
+      App.register_component(smartmeter_sensor);
+      return {smartmeter_sensor};
+    sensors:
+      name: Smartmeter Power Consumption
