@@ -7,7 +7,8 @@ python:
 before_install:
   - mv .travis-secrets.yaml secrets.yaml
 install:
-  - pip install -U https://github.com/platformio/platformio-core/archive/develop.zip
+  - pip install -U
+    https://github.com/platformio/platformio-core/archive/develop.zip
   - pip install yamllint
   - pip install esphomeyaml
 script:
