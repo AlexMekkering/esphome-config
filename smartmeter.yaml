@@ -1,6 +1,10 @@
 ---
+substitutions:
+  device: smartmeter
+  name: Smartmeter
+
 esphomeyaml:
-  name: smartmeter
+  name: ${device}
   platform: ESP8266
   board: nodemcuv2
   includes:
@@ -9,25 +13,34 @@ esphomeyaml:
 wifi:
   ssid: !secret home_wifi_ssid
   password: !secret home_wifi_password
+  domain: !secret home_domain
+  fast_connect: true
+  reboot_timeout: 5min
 
 api:
   password: !secret api_password
-
-status_led:
-  pin:
-    number: D4
-    inverted: true
 
 logger:
   level: INFO
 
 ota:
 
+web_server:
+
+status_led:
+  pin:
+    number: D4
+    inverted: true
+
+switch:
+  - platform: restart
+    name: ${name} Restart
+
 sensor:
   - platform: wifi_signal
-    name: Smartmeter WiFi Signal
+    name: ${name} WiFi Signal
   - platform: uptime
-    name: Smartmeter Uptime Sensor
+    name: ${name} Uptime Sensor
   - platform: dht
     model: DHT22
     pin: GPIO14
@@ -42,4 +55,8 @@ sensor:
       App.register_component(smartmeter_sensor);
       return {smartmeter_sensor};
     sensors:
-      name: Smartmeter Power Consumption
+      name: ${name} Power Consumption
+
+text_sensor:
+  - platform: version
+    name: ${name} ESPHome Version

@@ -12,6 +12,8 @@ install:
   - pip install yamllint
   - pip install esphomeyaml
 script:
-  - yamllint .
+  - yamllint *.yaml
   - esphomeyaml smartmeter.yaml config
+  - esphomeyaml bedroom_2.yaml config
   - esphomeyaml smartmeter.yaml compile
+  - esphomeyaml bedroom_2.yaml compile
