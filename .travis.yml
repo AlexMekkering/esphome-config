@@ -15,5 +15,7 @@ script:
   - yamllint *.yaml
   - esphomeyaml smartmeter.yaml config
   - esphomeyaml bedroom_2.yaml config
+  - esphomeyaml living_1.yaml config
   - esphomeyaml smartmeter.yaml compile
   - esphomeyaml bedroom_2.yaml compile
+  - esphomeyaml living_1.yaml compile
