@@ -2,6 +2,7 @@
 substitutions:
   device: bedroom_2
   name: Slaapkamer Achterwand
+  reboot_timeout: 7d
 
 esphomeyaml:
   name: ${device}
@@ -14,11 +15,14 @@ wifi:
   password: !secret home_wifi_password
   domain: !secret home_domain
   fast_connect: true
-  reboot_timeout: 7d
+  reboot_timeout: ${reboot_timeout}
+  ap:
+    ssid: ${device}
+    password: !secret api_password
 
 api:
   password: !secret api_password
-  reboot_timeout: 7d
+  reboot_timeout: ${reboot_timeout}
 
 logger:
   level: INFO
@@ -26,6 +30,11 @@ logger:
 ota:
 
 web_server:
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true
 
 sensor:
   - platform: wifi_signal
@@ -51,21 +60,13 @@ binary_sensor:
 output:
   - platform: gpio
     pin: GPIO12
-    id: gpio_12
-  - platform: esp8266_pwm
-    id: ${device}_green_led
-    pin:
-      number: GPIO13
-      inverted: true
+    id: relay_1
 
 light:
   - platform: binary
     name: ${name}
-    output: gpio_12
+    output: relay_1
     id: ${device}_light
-  - platform: monochromatic
-    name: ${name} Green LED
-    output: ${device}_green_led
 
 switch:
   - platform: restart
