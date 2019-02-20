@@ -36,11 +36,15 @@ switch:
   - platform: restart
     name: ${name} Restart
 
+binary_sensor:
+  - platform: status
+    name: ${name} Status
+
 sensor:
   - platform: wifi_signal
     name: ${name} WiFi Signal
   - platform: uptime
-    name: ${name} Uptime Sensor
+    id: uptime
   - platform: dht
     model: DHT22
     pin: GPIO14
@@ -60,3 +64,12 @@ sensor:
 text_sensor:
   - platform: version
     name: ${name} ESPHome Version
+  - platform: template
+    name: ${name} Uptime
+    icon: mdi:timer
+    lambda: |-
+      int up = id(uptime).state;
+      char result[16];
+      sprintf(result, "%dd %02d:%02d:%02d", up / 86400, (up % 86400) / 3600,
+                                            (up % 3600) / 60, up % 60);
+      return std::string(result);

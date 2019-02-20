@@ -40,22 +40,33 @@ sensor:
   - platform: wifi_signal
     name: ${name} WiFi Signal
   - platform: uptime
-    name: ${name} Uptime Sensor
+    id: uptime
 
 text_sensor:
   - platform: version
     name: ${name} ESPHome Version
+  - platform: template
+    name: ${name} Uptime
+    icon: mdi:timer
+    lambda: |-
+      int up = id(uptime).state;
+      char result[16];
+      sprintf(result, "%dd %02d:%02d:%02d", up / 86400, (up % 86400) / 3600,
+                                            (up % 3600) / 60, up % 60);
+      return std::string(result);
 
 binary_sensor:
+  - platform: status
+    name: ${name} Status
   - platform: gpio
+    id: button_1
     pin:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: true
-    name: ${name} Button
     on_press:
       then:
-        - light.toggle: ${device}_light
+        - light.toggle: light
 
 output:
   - platform: gpio
@@ -66,7 +77,7 @@ light:
   - platform: binary
     name: ${name}
     output: relay_1
-    id: ${device}_light
+    id: light
 
 switch:
   - platform: restart
