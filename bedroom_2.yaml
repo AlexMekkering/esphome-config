@@ -4,7 +4,7 @@ substitutions:
   name: Slaapkamer Achterwand
   reboot_timeout: 7d
 
-esphomeyaml:
+esphome:
   name: ${device}
   platform: ESP8266
   board: esp01_1m
