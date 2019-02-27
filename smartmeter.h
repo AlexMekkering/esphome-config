@@ -1,6 +1,6 @@
-#include "esphomelib.h"
+#include "esphome.h"
 
-using namespace esphomelib;
+using namespace esphome;
 
 static const char *TAG = "sensor.power_consumption";
 static const uint32_t MIN_MSEC_BETWEEN_PULSES = 150; // 150ms (or 24kW)

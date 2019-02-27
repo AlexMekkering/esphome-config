@@ -13,7 +13,6 @@ esphome:
 wifi:
   ssid: !secret home_wifi_ssid
   password: !secret home_wifi_password
-  domain: !secret home_domain
   fast_connect: true
   reboot_timeout: ${reboot_timeout}
   ap:
