@@ -3,12 +3,15 @@ substitutions:
   device: ventilation
   name: Ventilatie
   reboot_timeout: 7d
+  threshold: '15'
 
 esphome:
   name: ${device}
   platform: ESP8266
   board: esp01_1m
   board_flash_mode: dout
+  on_boot:
+    - script.execute: shutdown
 
 wifi:
   ssid: !secret home_wifi_ssid
@@ -34,6 +37,29 @@ status_led:
   pin:
     number: GPIO15
 
+globals:
+  - id: activated
+    restore_value: true
+    initial_value: 'true'
+    type: bool
+
+script:
+  - id: shutdown
+    then:
+      - if:
+          condition:
+            lambda: return id(activated) && id(fan).state;
+          then:
+            - wait_until:
+                sensor.in_range:
+                  id: power
+                  below: ${threshold}
+            - delay: 30min
+            - switch.turn_off: fan
+            - lambda: id(activated) = false;
+          else:
+            - lambda: id(activated) = false;
+
 sensor:
   - platform: wifi_signal
     name: ${name} WiFi Signal
@@ -45,11 +71,20 @@ sensor:
     cf1_pin: 13
     current:
       name: ${name} Current
+      icon: mdi:current-ac
     voltage:
       name: ${name} Voltage
+      icon: mdi:flash
     power:
+      id: power
       name: ${name} Power
-    update_interval: 60s
+      icon: mdi:power-plug
+      on_value_range:
+        - above: ${threshold}
+          then:
+            - script.stop: shutdown
+            - lambda: id(activated) = true;
+            - script.execute: shutdown
 
 text_sensor:
   - platform: version
@@ -75,19 +110,34 @@ binary_sensor:
       inverted: true
     on_press:
       then:
-        - fan.toggle: fan
+        - switch.toggle: fan
+  - platform: template
+    name: ${name} Activated
+    lambda: return id(activated);
 
 output:
   - platform: gpio
     pin: GPIO12
     id: relay_1
 
-fan:
-  - platform: binary
-    name: ${name}
-    output: relay_1
-    id: fan
-
 switch:
   - platform: restart
     name: ${name} Restart
+  - platform: output
+    name: ${name}
+    icon: mdi:fan
+    output: relay_1
+    id: fan
+    on_turn_off:
+      - script.stop: shutdown
+      - lambda: id(activated) = false;
+  - platform: template
+    name: ${name} Auto Poweroff
+    icon: mdi:timer-off
+    lambda: return id(activated);
+    turn_on_action:
+      - lambda: id(activated) = true;
+      - script.execute: shutdown
+    turn_off_action:
+      - script.stop: shutdown
+      - lambda: id(activated) = false;
