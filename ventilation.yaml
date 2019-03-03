@@ -39,9 +39,9 @@ status_led:
 
 globals:
   - id: activated
-    restore_value: true
-    initial_value: 'true'
     type: bool
+    restore_value: true
+    initial_value: 'false'
 
 script:
   - id: shutdown
