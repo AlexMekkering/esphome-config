@@ -1,20 +1,17 @@
-![esphomeyaml](https://esphomelib.com/_images/esphomeyaml-logo-full.svg)
+![ESPHome](logo-text.svg)
 
-This page is the starting point for all installation and configuration documentation of all my devices which are configured with [esphomeyaml](https://esphomelib.com/esphomeyaml/) .
+This page is the starting point for all installation and configuration documentation of all my devices which are configured with [ESPHome](https://esphome.io/) .
 
 # Installation
 ## Arch Linux
 ### Installing pip
-Because of platformio we need python 2, for which we can install pip as follows:
-`pacman -Syu python2-pip`
+Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`
 
 ### Setting up a virtual environment
-First we have to install virtualenv by `pip2 install virtualenv`
-Next, we setup a virtual environment with `virtualenv venv`
+We setup a virtual environment with `python -m venv venv`
 
 ### Installing esphomeyaml in a virtual environment
-In a virtual environment (`. venv/bin/activate`) call `pip install esphomeyaml`.
+In a virtual environment (`. venv/bin/activate`) call `pip install esphome`.
 
 # Knowledge base
 * [Powering sensors](PoweringSensors.md)
-
