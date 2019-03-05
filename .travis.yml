@@ -4,14 +4,14 @@ language: python
 python:
   - "3.7"
 before_install:
-  - mv .travis-secrets.yaml secrets.yaml
+  - mv components/.travis-secrets.yaml components/secrets.yaml
 install:
   - pip install -U
     https://github.com/platformio/platformio-core/archive/develop.zip
   - pip install yamllint
   - pip install esphome
 script:
-  - yamllint *.yaml
+  - yamllint .
   - esphome smartmeter.yaml config
   - esphome bedroom_2.yaml config
   - esphome living_1.yaml config

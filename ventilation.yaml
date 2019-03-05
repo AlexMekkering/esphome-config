@@ -13,24 +13,10 @@ esphome:
   on_boot:
     - script.execute: shutdown
 
-wifi:
-  ssid: !secret home_wifi_ssid
-  password: !secret home_wifi_password
-  fast_connect: true
-  reboot_timeout: ${reboot_timeout}
-  ap:
-    ssid: ${device}
-    password: !secret api_password
-
-api:
-  password: !secret api_password
-  reboot_timeout: ${reboot_timeout}
-
-logger:
-  level: INFO
-
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
 ota:
-
 web_server:
 
 status_led:
@@ -61,10 +47,8 @@ script:
             - lambda: id(activated) = false;
 
 sensor:
-  - platform: wifi_signal
-    name: ${name} WiFi Signal
-  - platform: uptime
-    id: uptime
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
   - platform: hlw8012
     sel_pin: 5
     cf_pin: 14
@@ -87,21 +71,11 @@ sensor:
             - script.execute: shutdown
 
 text_sensor:
-  - platform: version
-    name: ${name} ESPHome Version
-  - platform: template
-    name: ${name} Uptime
-    icon: mdi:timer
-    lambda: |-
-      int up = id(uptime).state;
-      char result[16];
-      sprintf(result, "%dd %02d:%02d:%02d", up / 86400, (up % 86400) / 3600,
-                                            (up % 3600) / 60, up % 60);
-      return std::string(result);
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
 
 binary_sensor:
-  - platform: status
-    name: ${name} Status
+  - !include binary_sensors/status.yaml
   - platform: gpio
     id: button_1
     pin:
@@ -121,8 +95,7 @@ output:
     id: relay_1
 
 switch:
-  - platform: restart
-    name: ${name} Restart
+  - !include switches/restart.yaml
   - platform: output
     name: ${name}
     icon: mdi:fan

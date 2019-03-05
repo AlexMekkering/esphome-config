@@ -1,0 +1,3 @@
+---
+password: !secret api_password
+reboot_timeout: ${reboot_timeout}

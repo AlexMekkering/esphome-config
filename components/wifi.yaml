@@ -1,0 +1,8 @@
+---
+ssid: !secret home_wifi_ssid
+password: !secret home_wifi_password
+fast_connect: true
+reboot_timeout: ${reboot_timeout}
+ap:
+  ssid: ${device}
+  password: !secret api_password
