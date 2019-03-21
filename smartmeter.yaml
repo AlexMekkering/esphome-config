@@ -2,6 +2,7 @@
 substitutions:
   device: smartmeter
   name: Smartmeter
+  location: Meterkast
   reboot_timeout: 5min
 
 esphome:
@@ -22,16 +23,21 @@ status_led:
     number: D4
     inverted: true
 
+i2c:
+  sda: D2
+  scl: D1
+
 sensor:
   - !include sensors/wifi-signal.yaml
   - !include sensors/uptime.yaml
-  - platform: dht
-    model: DHT22
-    pin: GPIO14
+  - platform: bme280
     temperature:
-      name: Meterkast Temperatuur
+      name: ${location} Temperatuur
+    pressure:
+      name: ${location} Luchtdruk
     humidity:
-      name: Meterkast Luchtvochtigheid
+      name: ${location} Luchtvochtigheid
+    address: 0x76
   - platform: custom
     lambda: |-
       auto smartmeter_sensor = new SmartMeterSensor(
