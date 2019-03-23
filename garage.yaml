@@ -1,0 +1,53 @@
+---
+substitutions:
+  device: garage
+  name: Garage
+  reboot_timeout: 5min
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
+ota:
+web_server:
+
+status_led:
+  pin:
+    number: D4
+    inverted: true
+
+i2c:
+  sda: D2
+  scl: D1
+
+dallas:
+  - pin: D7
+
+sensor:
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
+  - platform: bme280
+    temperature:
+      name: ${name} Temperatuur
+    pressure:
+      name: ${name} Luchtdruk
+    humidity:
+      name: ${name} Luchtvochtigheid
+    address: 0x76
+  - platform: dallas
+    address: 0x1E0114406D3EAA28
+    name: Buiten Temperatuur
+
+text_sensor:
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
+
+binary_sensor:
+  - !include binary_sensors/status.yaml
+
+switch:
+  - !include switches/restart.yaml
