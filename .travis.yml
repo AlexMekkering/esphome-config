@@ -15,5 +15,6 @@ script:
   - esphome smartmeter.yaml compile
   - esphome bedroom_2.yaml compile
   - esphome living_1.yaml compile
-  - esphome ventilation.yaml config
-  - esphome garage.yaml config
+  - esphome ventilation.yaml compile
+  - esphome garage.yaml compile
+  - esphome veranda_wcd.yaml compile

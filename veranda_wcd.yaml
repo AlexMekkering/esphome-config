@@ -1,0 +1,43 @@
+---
+# Porch switch, implemented by using a Shelly 1
+# (https://shelly.cloud/shelly1-open-source/)
+substitutions:
+  device: veranda_wcd
+  name: Veranda Wandcontactdoos
+  reboot_timeout: 7d
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: esp_wroom_02
+  board_flash_mode: dout
+
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
+ota:
+web_server:
+
+sensor:
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
+
+text_sensor:
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
+
+binary_sensor:
+  - !include binary_sensors/status.yaml
+  - platform: gpio
+    id: manual
+    pin: GPIO5
+    on_state:
+      then:
+        - switch.toggle: outlet
+
+switch:
+  - !include switches/restart.yaml
+  - platform: gpio
+    name: ${name}
+    pin: GPIO4
+    id: outlet
