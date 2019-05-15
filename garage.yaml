@@ -9,9 +9,9 @@ esphome:
   platform: ESP8266
   board: d1_mini_pro
   on_boot:
-  - priority: 90
-    then:
-    - output.turn_on: dht_supply
+    - priority: 90
+      then:
+        - output.turn_on: dht_supply
 
 wifi: !include components/wifi.yaml
 api: !include components/api.yaml

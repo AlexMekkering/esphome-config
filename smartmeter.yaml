@@ -12,9 +12,9 @@ esphome:
   includes:
     - smartmeter.h
   on_boot:
-  - priority: 90
-    then:
-    - output.turn_on: sm_supply
+    - priority: 90
+      then:
+        - output.turn_on: sm_supply
 
 wifi: !include components/wifi.yaml
 api: !include components/api.yaml
@@ -54,16 +54,19 @@ sensor:
     lambda: |-
       auto smartmeter_sensor = new SmartMeterSensor(12, 10000, 1000.0);
       App.register_component(smartmeter_sensor);
-      return {smartmeter_sensor->power_consumption_sensor, smartmeter_sensor->total_consumption_sensor};
+      return {
+        smartmeter_sensor->power_consumption_sensor,
+        smartmeter_sensor->total_consumption_sensor
+      };
     sensors:
-    - name: ${name} Power Consumption
-      unit_of_measurement: kW
-      accuracy_decimals: 3
-      icon: mdi:power-plug
-    - name: ${name} Total Consumption
-      unit_of_measurement: kWh
-      accuracy_decimals: 3
-      icon: mdi:sigma
+      - name: ${name} Power Consumption
+        unit_of_measurement: kW
+        accuracy_decimals: 3
+        icon: mdi:power-plug
+      - name: ${name} Total Consumption
+        unit_of_measurement: kWh
+        accuracy_decimals: 3
+        icon: mdi:sigma
 
 text_sensor:
   - !include text_sensors/version.yaml
