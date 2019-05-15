@@ -73,6 +73,7 @@ sensor:
 text_sensor:
   - !include text_sensors/version.yaml
   - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
 
 binary_sensor:
   - !include binary_sensors/status.yaml
