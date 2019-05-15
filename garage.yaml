@@ -7,7 +7,11 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  board: nodemcuv2
+  board: d1_mini_pro
+  on_boot:
+  - priority: 90
+    then:
+    - output.turn_on: dht_supply
 
 wifi: !include components/wifi.yaml
 api: !include components/api.yaml
@@ -17,34 +21,41 @@ web_server:
 
 status_led:
   pin:
-    number: D4
+    number: LED
     inverted: true
-
-i2c:
-  sda: D2
-  scl: D1
 
 dallas:
   - pin: D7
 
+output:
+  - platform: gpio
+    pin: D8
+    id: dallas_gnd
+  - platform: gpio
+    pin: D1
+    id: dht_gnd
+  - platform: gpio
+    pin: D2
+    id: dht_supply
+
 sensor:
   - !include sensors/wifi-signal.yaml
   - !include sensors/uptime.yaml
-  - platform: bme280
+  - platform: dallas
+    address: 0xDE011438B6F4AA28
+    name: Buiten Temperatuur
+  - platform: dht
+    model: DHT22
+    pin: D5
     temperature:
       name: ${name} Temperatuur
-    pressure:
-      name: ${name} Luchtdruk
     humidity:
       name: ${name} Luchtvochtigheid
-    address: 0x76
-  - platform: dallas
-    address: 0x1E0114406D3EAA28
-    name: Buiten Temperatuur
 
 text_sensor:
   - !include text_sensors/version.yaml
   - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
 
 binary_sensor:
   - !include binary_sensors/status.yaml
