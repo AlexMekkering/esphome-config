@@ -8,9 +8,13 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  board: nodemcuv2
+  board: d1_mini_pro
   includes:
     - smartmeter.h
+  on_boot:
+  - priority: 90
+    then:
+    - output.turn_on: sm_supply
 
 wifi: !include components/wifi.yaml
 api: !include components/api.yaml
@@ -26,6 +30,14 @@ status_led:
 i2c:
   sda: D2
   scl: D1
+
+output:
+  - platform: gpio
+    pin: D5
+    id: sm_gnd
+  - platform: gpio
+    pin: D7
+    id: sm_supply
 
 sensor:
   - !include sensors/wifi-signal.yaml
@@ -50,6 +62,7 @@ sensor:
 text_sensor:
   - !include text_sensors/version.yaml
   - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
 
 binary_sensor:
   - !include binary_sensors/status.yaml
