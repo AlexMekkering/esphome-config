@@ -41,3 +41,4 @@ switch:
     name: ${name}
     pin: GPIO4
     id: outlet
+    icon: mdi:power-socket-eu
