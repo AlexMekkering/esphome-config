@@ -1,0 +1,49 @@
+---
+substitutions:
+  device: bedroom_3
+  name: Slaapkamerklimaat
+  location: Slaapkamer
+  reboot_timeout: 5min
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
+ota:
+web_server:
+
+status_led:
+  pin:
+    number: D4
+    inverted: true
+
+i2c:
+  sda: D2
+  scl: D1
+
+sensor:
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
+  - platform: bme280
+    temperature:
+      name: ${location} Temperatuur
+    pressure:
+      name: ${location} Luchtdruk
+    humidity:
+      name: ${location} Luchtvochtigheid
+    address: 0x76
+
+text_sensor:
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
+
+binary_sensor:
+  - !include binary_sensors/status.yaml
+
+switch:
+  - !include switches/restart.yaml
