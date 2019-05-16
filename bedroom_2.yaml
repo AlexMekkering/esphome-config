@@ -16,11 +16,6 @@ logger: !include components/logger.yaml
 ota:
 web_server:
 
-status_led:
-  pin:
-    number: GPIO13
-    inverted: true
-
 sensor:
   - !include sensors/wifi-signal.yaml
   - !include sensors/uptime.yaml

@@ -16,11 +16,6 @@ logger: !include components/logger.yaml
 ota:
 web_server:
 
-status_led:
-  pin:
-    number: D4
-    inverted: true
-
 i2c:
   sda: D2
   scl: D1
