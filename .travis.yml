@@ -12,6 +12,7 @@ install:
   - pip install esphome
 script:
   - yamllint .
+  - esphome test.yaml compile
   - esphome smartmeter.yaml compile
   - esphome bedroom_2.yaml compile
   - esphome bedroom_3.yaml compile

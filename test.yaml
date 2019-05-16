@@ -1,0 +1,51 @@
+---
+substitutions:
+  device: test
+  name: Test
+  reboot_timeout: 7d
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: nodemcuv2
+  on_boot:
+    - priority: 90
+      then:
+        - output.turn_on: dallas_supply
+
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
+ota:
+web_server:
+
+status_led:
+  pin:
+    number: LED
+    inverted: true
+
+dallas:
+  - pin: D7
+
+output:
+  - platform: gpio
+    pin: D6
+    id: dallas_gnd
+  - platform: gpio
+    pin: D8
+    id: dallas_supply
+
+sensor:
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
+  - platform: dallas
+    address: 0x1E0114406D3EAA28
+    name: ${name} Temperature
+
+text_sensor:
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
+
+switch:
+  - !include switches/restart.yaml
