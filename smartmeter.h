@@ -3,8 +3,8 @@
 using namespace esphome;
 
 static const char *TAG = "sensor.power_consumption";
-static const uint32_t MIN_MSEC_BETWEEN_PULSES = 150; // 150ms (or 24kW)
-static const uint32_t MAX_MSEC_BETWEEN_PULSES = 36000000; // 10h (or 0.1Wh)
+static const uint32_t MIN_MSEC_BETWEEN_PULSES = 200; // 200ms (or 18kW max.)
+static const uint32_t MAX_MSEC_BETWEEN_PULSES = 36000000; // 10h (or 0.1Wh min.)
 
 volatile uint32_t last_pulse = 0;
 volatile uint32_t next_to_last_pulse = 0;
