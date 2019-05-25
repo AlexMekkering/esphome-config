@@ -3,7 +3,9 @@
 This page is the starting point for all installation and configuration documentation of all my devices which are configured with [ESPHome](https://esphome.io/) .
 
 # Current setup
+
 ## Device types & firmware features
+
 | device | type | physical button | gpio power | script | custom sensor |
 | -- | -- |:--:|:--:|:--:|:--:|
 | [bedroom_2] | [Sonoff S20]            | X |   |   |   |
@@ -13,7 +15,9 @@ This page is the starting point for all installation and configuration documenta
 | [smartmeter] | [NodeMCU v2]           |   | X |   | X |
 | [ventilation] | [Sonoff Pow]          | X |   | X |   |
 | [veranda_wcd] | [Shelly 1]            |   |   |   |   |
+
 ## Sensors
+
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
 | [bedroom_2]   |   |   |   |   |
