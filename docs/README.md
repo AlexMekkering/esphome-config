@@ -2,16 +2,57 @@
 
 This page is the starting point for all installation and configuration documentation of all my devices which are configured with [ESPHome](https://esphome.io/) .
 
+# Current setup
+## Device types & firmware features
+| device | type | physical button | gpio power | script | custom sensor |
+| -- | -- |:--:|:--:|:--:|:--:|
+| [bedroom_2] | [Sonoff S20]            | X |   |   |   |
+| [bedroom_3] | [NodeMCU v2]            |   |   |   |   |
+| [garage] | [Wemos D1 mini Pro v1.0.0] |   |   |   |   |
+| [living_1] | [Sonoff 4CH]             | X |   |   |   |
+| [smartmeter] | [NodeMCU v2]           |   | X |   | X |
+| [ventilation] | [Sonoff Pow]          | X |   | X |   |
+| [veranda_wcd] | [Shelly 1]            |   |   |   |   |
+## Sensors
+| device | bme280 | dallas | hlw8012 | dht22 |
+| -- |:--:|:--:|:--:|:--:|
+| [bedroom_2]   |   |   |   |   |
+| [bedroom_3]   | X |   |   |   |
+| [garage]      |   | X |   | X |
+| [living_1]    |   |   |   |   |
+| [smartmeter]  | X |   |   |   |
+| [ventilation] |   |   | X |   |
+| [veranda_wcd] |   |   |   |   |
+
 # Installation
 ## Arch Linux
 ### Installing pip
-Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`
+Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`.
 
 ### Setting up a virtual environment
 We setup a virtual environment with `python -m venv venv`
 
 ### Installing esphomeyaml in a virtual environment
-In a virtual environment (`. venv/bin/activate`) call `pip install esphome`.
+1. Activate the virtual environment:
+   `. venv/bin/activate`
+1. (Temporary workaround) Since platformio 4 is still in alpha, we need to install it from the develop branch:
+   `pip install -U https://github.com/platformio/platformio-core/archive/develop.zip`
+1. Install esphome
+   `pip install esphome`
 
 # Knowledge base
 * [Powering sensors](PoweringSensors.md)
+
+[bedroom_2]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_2.yaml
+[bedroom_3]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_3.yaml
+[garage]: https://github.com/AlexMekkering/esphome-config/blob/master/garage.yaml
+[living_1]: https://github.com/AlexMekkering/esphome-config/blob/master/living_1.yaml
+[smartmeter]: https://github.com/AlexMekkering/esphome-config/blob/master/smartmeter.yaml
+[ventilation]: https://github.com/AlexMekkering/esphome-config/blob/master/ventilation.yaml
+[veranda_wcd]: https://github.com/AlexMekkering/esphome-config/blob/master/veranda_wcd.yaml
+[Sonoff S20]: https://www.itead.cc/smart-socket.html
+[NodeMCU v2]: https://github.com/nodemcu/nodemcu-devkit-v1.0
+[Wemos D1 mini Pro v1.0.0]: https://wiki.wemos.cc/products:retired:d1_mini_pro_v1.0.0
+[Sonoff 4CH]: https://www.itead.cc/sonoff-4ch.html
+[Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
+[Shelly 1]: https://shelly.cloud/shelly1-open-source/
