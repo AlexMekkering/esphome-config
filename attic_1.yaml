@@ -1,0 +1,98 @@
+---
+substitutions:
+  device: attic_1
+  name: Zolder
+  reboot_timeout: 7d
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: esp01_1m
+  board_flash_mode: dout
+
+wifi: !include components/wifi.yaml
+api: !include components/api.yaml
+logger: !include components/logger.yaml
+ota:
+web_server:
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true
+
+sensor:
+  - !include sensors/wifi-signal.yaml
+  - !include sensors/uptime.yaml
+
+text_sensor:
+  - !include text_sensors/version.yaml
+  - !include text_sensors/pretty-uptime.yaml
+  - !include text_sensors/wifi-info.yaml
+
+binary_sensor:
+  - !include binary_sensors/status.yaml
+  - platform: gpio
+    id: button_1
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - switch.toggle: pc
+  - platform: gpio
+    id: button_2
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - switch.toggle: printer
+  - platform: gpio
+    id: button_3
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - light.toggle: bureaulamp
+  - platform: gpio
+    id: button_4
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLUP
+      inverted: true
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
+  - platform: gpio
+    pin: GPIO5
+    id: relay_2
+  - platform: gpio
+    pin: GPIO4
+    id: relay_3
+  - platform: gpio
+    pin: GPIO15
+    id: relay_4
+
+light:
+  - platform: binary
+    name: ${name} Bureaulamp
+    output: relay_3
+    id: bureaulamp
+
+switch:
+  - !include switches/restart.yaml
+  - platform: output
+    name: ${name} PC
+    output: relay_1
+    id: pc
+  - platform: output
+    name: ${name} Printer
+    output: relay_2
+    id: printer

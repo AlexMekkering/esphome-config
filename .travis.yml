@@ -20,3 +20,4 @@ script:
   - esphome ventilation.yaml compile
   - esphome garage.yaml compile
   - esphome veranda_wcd.yaml compile
+  - esphome attic_1.yaml compile
