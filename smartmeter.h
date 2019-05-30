@@ -42,7 +42,7 @@ void ICACHE_RAM_ATTR gpio_intr() {
 
 class SmartMeterSensor : public PollingComponent {
   private:
-    GPIOInputPin *pin;
+    GPIOPin *pin;
     float factor;
 
   public:
@@ -50,7 +50,7 @@ class SmartMeterSensor : public PollingComponent {
     sensor::Sensor *total_consumption_sensor = new sensor::Sensor();
 
     SmartMeterSensor(uint8_t pin, uint32_t update_interval = 10000, float pulses_per_kwh = 1000.0f) : PollingComponent(update_interval) {
-        this->pin = new GPIOInputPin(pin);
+        this->pin = new GPIOPin(pin, INPUT);
         this->factor = 3600000.0f / pulses_per_kwh;
     }
 
