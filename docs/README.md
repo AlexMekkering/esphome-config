@@ -6,7 +6,7 @@ This page is the starting point for all installation and configuration documenta
 
 ## Device types & firmware features
 
-| device | type | physical button | gpio power | script | custom sensor |
+| device | type | physical button | [gpio power] | [script] | custom sensor |
 | -- | -- |:--:|:--:|:--:|:--:|
 | [attic_1] | [Sonoff 4CH R2]           | X |   |   |   |
 | [bedroom_2] | [Sonoff S20]            | X |   |   |   |
@@ -64,3 +64,5 @@ We setup a virtual environment with `python -m venv venv`
 [Sonoff 4CH R2]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
+[script]: https://esphome.io/guides/automations.html#script-execute-action
+[gpio power]: PoweringSensors.md
