@@ -61,5 +61,6 @@ We setup a virtual environment with `python -m venv venv`
 [NodeMCU v2]: https://github.com/nodemcu/nodemcu-devkit-v1.0
 [Wemos D1 mini Pro v1.0.0]: https://wiki.wemos.cc/products:retired:d1_mini_pro_v1.0.0
 [Sonoff 4CH]: https://www.itead.cc/sonoff-4ch.html
+[Sonoff 4CH R2]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
