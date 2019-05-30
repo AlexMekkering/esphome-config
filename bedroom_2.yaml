@@ -29,7 +29,7 @@ binary_sensor:
       inverted: true
     on_press:
       then:
-        - light.toggle: light
+        - light.toggle: light_1
 
 output:
   - platform: gpio
@@ -40,4 +40,4 @@ light:
   - platform: binary
     name: ${name}
     output: relay_1
-    id: light
+    id: light_1
