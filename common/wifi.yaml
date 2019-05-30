@@ -4,4 +4,4 @@ password: !secret home_wifi_password
 reboot_timeout: ${reboot_timeout}
 ap:
   ssid: ${device}
-  password: !secret api_password
+  password: !secret ap_wifi_password

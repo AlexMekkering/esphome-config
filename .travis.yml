@@ -4,7 +4,7 @@ language: python
 python:
   - "3.7"
 before_install:
-  - mv components/.travis-secrets.yaml components/secrets.yaml
+  - mv common/.travis-secrets.yaml common/secrets.yaml
 install:
   - pip install -U
     https://github.com/platformio/platformio-core/archive/develop.zip

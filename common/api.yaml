@@ -1,2 +1,3 @@
 ---
 reboot_timeout: ${reboot_timeout}
+password: !secret api_password

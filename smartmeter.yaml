@@ -17,11 +17,14 @@ esphome:
         - output.turn_on: sm_supply
         - output.turn_off: bme_gnd
 
-wifi: !include components/wifi.yaml
-api: !include components/api.yaml
-logger: !include components/logger.yaml
-ota:
-web_server:
+wifi: !include common/wifi.yaml
+api: !include common/api.yaml
+logger: !include common/logger.yaml
+ota: !include common/ota.yaml
+web_server: !include common/web_server.yaml
+text_sensor: !include common/text_sensors.yaml
+binary_sensor: !include common/binary_sensors.yaml
+switch: !include common/switches.yaml
 
 status_led:
   pin:
@@ -44,8 +47,8 @@ output:
     id: sm_supply
 
 sensor:
-  - !include sensors/wifi-signal.yaml
-  - !include sensors/uptime.yaml
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
   - platform: bme280
     temperature:
       name: ${location} Temperatuur
@@ -71,14 +74,3 @@ sensor:
         unit_of_measurement: kWh
         accuracy_decimals: 3
         icon: mdi:sigma
-
-text_sensor:
-  - !include text_sensors/version.yaml
-  - !include text_sensors/pretty-uptime.yaml
-  - !include text_sensors/wifi-info.yaml
-
-binary_sensor:
-  - !include binary_sensors/status.yaml
-
-switch:
-  - !include switches/restart.yaml

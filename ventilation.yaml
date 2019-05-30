@@ -13,11 +13,12 @@ esphome:
   on_boot:
     - script.execute: shutdown
 
-wifi: !include components/wifi.yaml
-api: !include components/api.yaml
-logger: !include components/logger.yaml
-ota:
-web_server:
+wifi: !include common/wifi.yaml
+api: !include common/api.yaml
+logger: !include common/logger.yaml
+ota: !include common/ota.yaml
+web_server: !include common/web_server.yaml
+text_sensor: !include common/text_sensors.yaml
 
 status_led:
   pin:
@@ -47,8 +48,8 @@ script:
             - lambda: id(activated) = false;
 
 sensor:
-  - !include sensors/wifi-signal.yaml
-  - !include sensors/uptime.yaml
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
   - platform: hlw8012
     sel_pin: 5
     cf_pin: 14
@@ -70,13 +71,8 @@ sensor:
             - lambda: id(activated) = true;
             - script.execute: shutdown
 
-text_sensor:
-  - !include text_sensors/version.yaml
-  - !include text_sensors/pretty-uptime.yaml
-  - !include text_sensors/wifi-info.yaml
-
 binary_sensor:
-  - !include binary_sensors/status.yaml
+  - !include common/binary_sensor/status.yaml
   - platform: gpio
     id: button_1
     pin:
@@ -96,7 +92,7 @@ output:
     id: relay_1
 
 switch:
-  - !include switches/restart.yaml
+  - !include common/switch/restart.yaml
   - platform: output
     name: ${name}
     icon: mdi:fan

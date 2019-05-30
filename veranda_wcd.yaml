@@ -12,23 +12,16 @@ esphome:
   board: esp_wroom_02
   board_flash_mode: dout
 
-wifi: !include components/wifi.yaml
-api: !include components/api.yaml
-logger: !include components/logger.yaml
-ota:
-web_server:
-
-sensor:
-  - !include sensors/wifi-signal.yaml
-  - !include sensors/uptime.yaml
-
-text_sensor:
-  - !include text_sensors/version.yaml
-  - !include text_sensors/pretty-uptime.yaml
-  - !include text_sensors/wifi-info.yaml
+wifi: !include common/wifi.yaml
+api: !include common/api.yaml
+logger: !include common/logger.yaml
+ota: !include common/ota.yaml
+web_server: !include common/web_server.yaml
+text_sensor: !include common/text_sensors.yaml
+sensor: !include common/sensors.yaml
 
 binary_sensor:
-  - !include binary_sensors/status.yaml
+  - !include common/binary_sensor/status.yaml
   - platform: gpio
     id: manual
     pin: GPIO5
@@ -37,7 +30,7 @@ binary_sensor:
         - switch.toggle: outlet
 
 switch:
-  - !include switches/restart.yaml
+  - !include common/switch/restart.yaml
   - platform: gpio
     name: ${name}
     pin: GPIO4

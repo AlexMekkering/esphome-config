@@ -1,8 +1,4 @@
 secrets.yaml
 **/
-!components/
-!binary_sensors/
-!text_sensors/
-!sensors/
-!switches/
+!common/
 !docs/

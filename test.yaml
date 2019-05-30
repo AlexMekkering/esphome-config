@@ -13,11 +13,13 @@ esphome:
       then:
         - output.turn_on: dallas_supply
 
-wifi: !include components/wifi.yaml
-api: !include components/api.yaml
-logger: !include components/logger.yaml
-ota:
-web_server:
+wifi: !include common/wifi.yaml
+api: !include common/api.yaml
+logger: !include common/logger.yaml
+ota: !include common/ota.yaml
+web_server: !include common/web_server.yaml
+text_sensor: !include common/text_sensors.yaml
+switch: !include common/switches.yaml
 
 status_led:
   pin:
@@ -36,16 +38,8 @@ output:
     id: dallas_supply
 
 sensor:
-  - !include sensors/wifi-signal.yaml
-  - !include sensors/uptime.yaml
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
   - platform: dallas
     address: 0x1E0114406D3EAA28
     name: ${name} Temperature
-
-text_sensor:
-  - !include text_sensors/version.yaml
-  - !include text_sensors/pretty-uptime.yaml
-  - !include text_sensors/wifi-info.yaml
-
-switch:
-  - !include switches/restart.yaml
