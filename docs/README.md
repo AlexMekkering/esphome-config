@@ -21,7 +21,7 @@ This page is the starting point for all installation and configuration documenta
 
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
-| [attic_1 ]    |   |   |   |   |
+| [attic_1]    |   |   |   |   |
 | [bedroom_2]   |   |   |   |   |
 | [bedroom_3]   | X |   |   |   |
 | [garage]      |   | X |   | X |
