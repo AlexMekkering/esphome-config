@@ -8,6 +8,7 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: d1_mini_pro
+  arduino_version: latest
   on_boot:
     - priority: 90
       then:

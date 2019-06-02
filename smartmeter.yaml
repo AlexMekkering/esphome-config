@@ -9,6 +9,7 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: d1_mini_pro
+  arduino_version: latest
   includes:
     - smartmeter.h
   on_boot:

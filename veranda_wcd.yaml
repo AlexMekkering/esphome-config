@@ -11,6 +11,7 @@ esphome:
   platform: ESP8266
   board: esp_wroom_02
   board_flash_mode: dout
+  arduino_version: latest
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml

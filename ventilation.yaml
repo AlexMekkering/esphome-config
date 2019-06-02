@@ -10,6 +10,7 @@ esphome:
   platform: ESP8266
   board: esp01_1m
   board_flash_mode: dout
+  arduino_version: latest
   on_boot:
     - script.execute: shutdown
 

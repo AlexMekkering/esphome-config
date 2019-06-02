@@ -6,18 +6,16 @@ python:
 before_install:
   - mv common/.travis-secrets.yaml common/secrets.yaml
 install:
-  - pip install -U
-    https://github.com/platformio/platformio-core/archive/develop.zip
-  - pip install yamllint
-  - pip install esphome
+  - ./install.sh
 script:
   - yamllint .
   - esphome test.yaml compile
-  - esphome smartmeter.yaml compile
+  - esphome attic_1.yaml compile
   - esphome bedroom_2.yaml compile
   - esphome bedroom_3.yaml compile
-  - esphome living_1.yaml compile
-  - esphome ventilation.yaml compile
   - esphome garage.yaml compile
+  - esphome living_1.yaml compile
+  - esphome smartmeter.yaml compile
+  - esphome ventilation.yaml compile
   - esphome veranda_wcd.yaml compile
-  - esphome attic_1.yaml compile
+

@@ -9,6 +9,7 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: nodemcuv2
+  arduino_version: latest
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
