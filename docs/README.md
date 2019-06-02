@@ -21,7 +21,7 @@ This page is the starting point for all installation and configuration documenta
 
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
-| [attic_1]    |   |   |   |   |
+| [attic_1]     |   |   |   |   |
 | [bedroom_2]   |   |   |   |   |
 | [bedroom_3]   | X |   |   |   |
 | [garage]      |   | X |   | X |
@@ -32,19 +32,12 @@ This page is the starting point for all installation and configuration documenta
 
 # Installation
 ## Arch Linux
-### Installing pip
+### Installing python
 Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`.
 
-### Setting up a virtual environment
-We setup a virtual environment with `python -m venv venv`
-
-### Installing esphomeyaml in a virtual environment
-1. Activate the virtual environment:
-   `. venv/bin/activate`
-1. (Temporary workaround) Since platformio 4 is still in alpha, we need to install it from the develop branch:
-   `pip install -U https://github.com/platformio/platformio-core/archive/develop.zip`
-1. Install esphome
-   `pip install esphome`
+### Activating up a virtual environment with esphome
+There's an install script. Execute it with `. install.sh`
+> Once setup, the virtual environment can be activated with `. venv/bin/activate`
 
 # Knowledge base
 * [Powering sensors](PoweringSensors.md)
