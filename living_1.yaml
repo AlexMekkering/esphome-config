@@ -2,6 +2,7 @@
 substitutions:
   device: living_1
   name: TV Meubel
+  location: Woonkamer
   reboot_timeout: 7d
 
 esphome:
@@ -13,16 +14,33 @@ esphome:
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
-logger: !include common/logger.yaml
+logger:
+  level: INFO
+  baud_rate: 0
 ota: !include common/ota.yaml
 web_server: !include common/web_server.yaml
 text_sensor: !include common/text_sensors.yaml
-sensor: !include common/sensors.yaml
 
 status_led:
   pin:
     number: GPIO13
     inverted: true
+
+i2c:
+  sda: GPIO2
+  scl: RX
+
+sensor:
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - platform: bme280
+    temperature:
+      name: ${location} Temperatuur
+    pressure:
+      name: ${location} Luchtdruk
+    humidity:
+      name: ${location} Luchtvochtigheid
+    address: 0x76
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
