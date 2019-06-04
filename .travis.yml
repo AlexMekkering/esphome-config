@@ -6,7 +6,7 @@ python:
 before_install:
   - mv common/.travis-secrets.yaml common/secrets.yaml
 install:
-  - ./install.sh
+  - . install.sh
 script:
   - yamllint .
   - esphome test.yaml compile
