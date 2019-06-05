@@ -2,6 +2,7 @@
 platform: template
 name: ${name} Uptime
 icon: mdi:timer
+update_interval: 5min
 lambda: |-
   int up = id(uptime_raw).state;
   char result[16];

@@ -2,14 +2,13 @@
 substitutions:
   device: attic_1
   name: Zolder
-  reboot_timeout: 7d
+  reboot_timeout: 14d
 
 esphome:
   name: ${device}
   platform: ESP8266
   board: esp01_1m
   board_flash_mode: dout
-  arduino_version: latest
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
@@ -40,6 +39,7 @@ sensor:
     humidity:
       name: ${name} Luchtvochtigheid
     address: 0x76
+    update_interval: 5min
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml

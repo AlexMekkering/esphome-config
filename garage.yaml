@@ -2,13 +2,12 @@
 substitutions:
   device: garage
   name: Garage
-  reboot_timeout: 5min
+  reboot_timeout: 1h
 
 esphome:
   name: ${device}
   platform: ESP8266
   board: d1_mini_pro
-  arduino_version: latest
   on_boot:
     - priority: 90
       then:
@@ -30,6 +29,7 @@ status_led:
 
 dallas:
   - pin: D7
+    update_interval: 5min
 
 output:
   - platform: gpio
@@ -55,3 +55,4 @@ sensor:
       name: ${name} Temperatuur
     humidity:
       name: ${name} Luchtvochtigheid
+    update_interval: 5min

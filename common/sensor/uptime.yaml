@@ -1,3 +1,4 @@
 ---
 platform: uptime
 id: uptime_raw
+update_interval: 5min

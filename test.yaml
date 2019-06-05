@@ -2,13 +2,12 @@
 substitutions:
   device: test
   name: Test
-  reboot_timeout: 7d
+  reboot_timeout: 14d
 
 esphome:
   name: ${device}
   platform: ESP8266
   board: nodemcuv2
-  arduino_version: latest
   on_boot:
     - priority: 90
       then:

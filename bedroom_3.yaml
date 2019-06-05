@@ -3,13 +3,12 @@ substitutions:
   device: bedroom_3
   name: Slaapkamerklimaat
   location: Slaapkamer
-  reboot_timeout: 5min
+  reboot_timeout: 1h
 
 esphome:
   name: ${device}
   platform: ESP8266
   board: nodemcuv2
-  arduino_version: latest
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
@@ -35,3 +34,4 @@ sensor:
     humidity:
       name: ${location} Luchtvochtigheid
     address: 0x76
+    update_interval: 5min
