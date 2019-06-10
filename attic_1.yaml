@@ -79,12 +79,6 @@ binary_sensor:
 
 output:
   - platform: gpio
-    pin: GPIO12
-    id: relay_1
-  - platform: gpio
-    pin: GPIO5
-    id: relay_2
-  - platform: gpio
     pin: GPIO4
     id: relay_3
   - platform: gpio
@@ -99,13 +93,13 @@ light:
 
 switch:
   - !include common/switch/restart.yaml
-  - platform: output
+  - platform: gpio
     name: ${name} PC
-    output: relay_1
+    pin: GPIO12
     id: pc
     icon: mdi:laptop
-  - platform: output
+  - platform: gpio
     name: ${name} Printer
-    output: relay_2
+    pin: GPIO5
     id: printer
     icon: mdi:printer
