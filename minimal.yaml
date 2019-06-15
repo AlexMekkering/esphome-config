@@ -1,0 +1,16 @@
+---
+substitutions:
+  device: minimal
+  reboot_timeout: 1d
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: esp01_1m
+  board_flash_mode: dout
+
+wifi: !include common/wifi.yaml
+ota: !include common/ota.yaml
+logger:
+  level: ERROR
+  baud_rate: 0

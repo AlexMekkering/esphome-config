@@ -9,6 +9,7 @@ install:
   - . install.sh
 script:
   - yamllint .
+  - esphome minimal.yaml compile
   - esphome test.yaml compile
   - esphome attic_1.yaml compile
   - esphome bedroom_2.yaml compile
