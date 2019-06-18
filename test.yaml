@@ -8,6 +8,8 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: nodemcuv2
+  platformio_options:
+    lib_ldf_mode: deep
   on_boot:
     - priority: 90
       then:

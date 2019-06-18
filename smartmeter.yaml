@@ -8,6 +8,8 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
+  platformio_options:
+    lib_ldf_mode: deep
   board: d1_mini_pro
   includes:
     - smartmeter.h

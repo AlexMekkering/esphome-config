@@ -9,6 +9,8 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
+  platformio_options:
+    lib_ldf_mode: deep
   board: esp_wroom_02
   board_flash_mode: dout
 
