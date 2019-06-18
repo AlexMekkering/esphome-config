@@ -12,6 +12,7 @@ script:
   - esphome minimal.yaml compile
   - esphome test.yaml compile
   - esphome attic_1.yaml compile
+  - esphome bedroom_1.yaml compile
   - esphome bedroom_2.yaml compile
   - esphome bedroom_3.yaml compile
   - esphome garage.yaml compile
