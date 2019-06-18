@@ -1,0 +1,89 @@
+---
+substitutions:
+  device: bedroom_1
+  name: Slaapkamer
+  location: Slaapkamer
+  reboot_timeout: 14d
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  platformio_options:
+    lib_ldf_mode: deep
+  board: esp01_1m
+  board_flash_mode: dout
+
+wifi: !include common/wifi.yaml
+api: !include common/api.yaml
+logger: !include common/logger.yaml
+ota: !include common/ota.yaml
+web_server: !include common/web_server.yaml
+text_sensor: !include common/text_sensors.yaml
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true
+
+sensor:
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+
+binary_sensor:
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: button_1
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - light.toggle: nachtlampje_alex
+  - platform: gpio
+    id: button_2
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - light.toggle: nachtlampje_joyce
+  - platform: gpio
+    id: button_3
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - switch.toggle: tv
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
+  - platform: gpio
+    pin: GPIO5
+    id: relay_2
+  - platform: gpio
+    pin: GPIO4
+    id: relay_3
+
+light:
+  - platform: binary
+    name: Nachtlampje Alex
+    output: relay_1
+    id: nachtlampje_alex
+  - platform: binary
+    name: Nachtlampje Joyce
+    output: relay_2
+    id: nachtlampje_joyce
+
+switch:
+  - !include common/switch/restart.yaml
+  - platform: output
+    name: ${name} TV
+    output: relay_3
+    id: tv
+    icon: mdi:television
