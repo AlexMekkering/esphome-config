@@ -9,6 +9,7 @@ This page is the starting point for all installation and configuration documenta
 | device | type | physical button | [gpio power] | [script] | custom sensor |
 | -- | -- |:--:|:--:|:--:|:--:|
 | [attic_1] | [Sonoff 4CH R2]           | X |   |   |   |
+| [bedroom_1] | [Sonoff 4CH Pro]        | X |   |   |   |
 | [bedroom_2] | [Sonoff S20]            | X |   |   |   |
 | [bedroom_3] | [NodeMCU v2]            |   |   |   |   |
 | [garage] | [Wemos D1 mini Pro v1.0.0] |   |   |   |   |
@@ -23,6 +24,7 @@ This page is the starting point for all installation and configuration documenta
 | -- |:--:|:--:|:--:|:--:|
 | [attic_1]     |   |   |   |   |
 | [bedroom_2]   |   |   |   |   |
+| [bedroom_1]   |   |   |   |   |
 | [bedroom_3]   | X |   |   |   |
 | [garage]      |   | X |   | X |
 | [living_1]    |   |   |   |   |
@@ -55,6 +57,7 @@ There's an install script. Execute it with `. install.sh`
 [Wemos D1 mini Pro v1.0.0]: https://wiki.wemos.cc/products:retired:d1_mini_pro_v1.0.0
 [Sonoff 4CH]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff 4CH R2]: https://www.itead.cc/sonoff-4ch.html
+[Sonoff 4CH Pro]: https://www.itead.cc/sonoff-4ch-pro.html
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
 [script]: https://esphome.io/guides/automations.html#script-execute-action
