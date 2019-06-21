@@ -19,15 +19,7 @@ logger: !include common/logger.yaml
 ota: !include common/ota.yaml
 web_server: !include common/web_server.yaml
 text_sensor: !include common/text_sensors.yaml
-
-status_led:
-  pin:
-    number: GPIO13
-    inverted: true
-
-sensor:
-  - !include common/sensor/wifi-signal.yaml
-  - !include common/sensor/uptime.yaml
+sensor: !include common/sensors.yaml
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
