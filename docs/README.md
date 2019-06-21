@@ -23,8 +23,8 @@ This page is the starting point for all installation and configuration documenta
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
 | [attic_1]     |   |   |   |   |
-| [bedroom_2]   |   |   |   |   |
 | [bedroom_1]   |   |   |   |   |
+| [bedroom_2]   |   |   |   |   |
 | [bedroom_3]   | X |   |   |   |
 | [garage]      |   | X |   | X |
 | [living_1]    |   |   |   |   |
@@ -45,6 +45,7 @@ There's an install script. Execute it with `. install.sh`
 * [Powering sensors](PoweringSensors.md)
 
 [attic_1]: https://github.com/AlexMekkering/esphome-config/blob/master/attic_1.yaml
+[bedroom_1]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_1.yaml
 [bedroom_2]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_2.yaml
 [bedroom_3]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_3.yaml
 [garage]: https://github.com/AlexMekkering/esphome-config/blob/master/garage.yaml
