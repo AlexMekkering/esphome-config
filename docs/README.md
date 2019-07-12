@@ -11,7 +11,6 @@ This page is the starting point for all installation and configuration documenta
 | [attic_1] | [Sonoff 4CH R2]           | X |   |   |   |
 | [bedroom_1] | [Sonoff 4CH Pro]        | X |   |   |   |
 | [bedroom_2] | [Sonoff S20]            | X |   |   |   |
-| [bedroom_3] | [NodeMCU v2]            |   |   |   |   |
 | [garage] | [Wemos D1 mini Pro v1.0.0] |   |   |   |   |
 | [living_1] | [Sonoff 4CH]             | X |   |   |   |
 | [smartmeter] | [NodeMCU v2]           |   | X |   | X |
@@ -23,11 +22,10 @@ This page is the starting point for all installation and configuration documenta
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
 | [attic_1]     |   |   |   |   |
-| [bedroom_1]   |   |   |   |   |
+| [bedroom_1]   | X |   |   |   |
 | [bedroom_2]   |   |   |   |   |
-| [bedroom_3]   | X |   |   |   |
 | [garage]      |   | X |   | X |
-| [living_1]    |   |   |   |   |
+| [living_1]    | X |   |   |   |
 | [smartmeter]  | X |   |   |   |
 | [ventilation] |   |   | X |   |
 | [veranda_wcd] |   |   |   |   |
@@ -47,7 +45,6 @@ There's an install script. Execute it with `. install.sh`
 [attic_1]: https://github.com/AlexMekkering/esphome-config/blob/master/attic_1.yaml
 [bedroom_1]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_1.yaml
 [bedroom_2]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_2.yaml
-[bedroom_3]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_3.yaml
 [garage]: https://github.com/AlexMekkering/esphome-config/blob/master/garage.yaml
 [living_1]: https://github.com/AlexMekkering/esphome-config/blob/master/living_1.yaml
 [smartmeter]: https://github.com/AlexMekkering/esphome-config/blob/master/smartmeter.yaml

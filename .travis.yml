@@ -14,7 +14,6 @@ script:
   - esphome attic_1.yaml compile
   - esphome bedroom_1.yaml compile
   - esphome bedroom_2.yaml compile
-  - esphome bedroom_3.yaml compile
   - esphome garage.yaml compile
   - esphome living_1.yaml compile
   - esphome smartmeter.yaml compile

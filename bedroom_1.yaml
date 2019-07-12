@@ -15,11 +15,29 @@ esphome:
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
-logger: !include common/logger.yaml
+logger:
+  level: INFO
+  baud_rate: 0
 ota: !include common/ota.yaml
 web_server: !include common/web_server.yaml
 text_sensor: !include common/text_sensors.yaml
-sensor: !include common/sensors.yaml
+
+i2c:
+  sda: TX
+  scl: RX
+
+sensor:
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - platform: bme280
+    temperature:
+      name: ${location} Temperatuur
+    pressure:
+      name: ${location} Luchtdruk
+    humidity:
+      name: ${location} Luchtvochtigheid
+    address: 0x76
+    update_interval: 5min
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
