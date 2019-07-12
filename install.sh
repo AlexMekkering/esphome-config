@@ -7,5 +7,5 @@ if [ -z "${VIRTUAL_ENV}" ]; then
   . $ACTIVATE
 fi
 
-pip install -U pip setuptools https://github.com/platformio/platformio-core/archive/develop.zip yamllint esphome
+pip install -U pip setuptools yamllint esphome
 pio platform update
