@@ -7,15 +7,15 @@ This page is the starting point for all installation and configuration documenta
 ## Device types & firmware features
 
 | device | type | physical button | [GPIO power] | UART GPIO | [script] | custom sensor |
-| -- | -- |:--:|:--:|:--:|:--:|
-| [attic_1] | [Sonoff 4CH R2]               | X |   | X |   |   |
-| [bedroom_1] | [Sonoff 4CH Pro]            | X |   | X |   |   |
-| [bedroom_2] | [Sonoff S20]                | X |   |   |   |   |
-| [garage] | [Wemos D1 mini Pro v1.0.0]     |   |   |   |   |   |
-| [living_1] | [Sonoff 4CH]                 | X |   | X |   |   |
-| [smartmeter] | [Wemos D1 mini Pro v1.0.0] |   | X |   |   | X |
-| [ventilation] | [Sonoff Pow]              | X |   |   | X |   |
-| [veranda_wcd] | [Shelly 1]                |   |   |   |   |   |
+| -- | -- |:--:|:--:|:--:|:--:|:--:|
+| [attic_1]     | [Sonoff 4CH R2]             | X |   | X |   |   |
+| [bedroom_1]   | [Sonoff 4CH Pro]            | X |   | X |   |   |
+| [bedroom_2]   | [Sonoff S20]                | X |   |   |   |   |
+| [garage]      | [Wemos D1 mini Pro v1.0.0]  |   |   |   |   |   |
+| [living_1]    | [Sonoff 4CH]                | X |   | X |   |   |
+| [smartmeter]  | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   | X |
+| [ventilation] | [Sonoff Pow]                | X |   |   | X |   |
+| [veranda_wcd] | [Shelly 1]                  |   |   |   |   |   |
 
 ## Sensors
 
