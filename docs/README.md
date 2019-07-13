@@ -6,22 +6,22 @@ This page is the starting point for all installation and configuration documenta
 
 ## Device types & firmware features
 
-| device | type | physical button | [gpio power] | [script] | custom sensor |
+| device | type | physical button | [GPIO power] | UART GPIO | [script] | custom sensor |
 | -- | -- |:--:|:--:|:--:|:--:|
-| [attic_1] | [Sonoff 4CH R2]           | X |   |   |   |
-| [bedroom_1] | [Sonoff 4CH Pro]        | X |   |   |   |
-| [bedroom_2] | [Sonoff S20]            | X |   |   |   |
-| [garage] | [Wemos D1 mini Pro v1.0.0] |   |   |   |   |
-| [living_1] | [Sonoff 4CH]             | X |   |   |   |
-| [smartmeter] | [NodeMCU v2]           |   | X |   | X |
-| [ventilation] | [Sonoff Pow]          | X |   | X |   |
-| [veranda_wcd] | [Shelly 1]            |   |   |   |   |
+| [attic_1] | [Sonoff 4CH R2]               | X |   | X |   |   |
+| [bedroom_1] | [Sonoff 4CH Pro]            | X |   | X |   |   |
+| [bedroom_2] | [Sonoff S20]                | X |   |   |   |   |
+| [garage] | [Wemos D1 mini Pro v1.0.0]     |   |   |   |   |   |
+| [living_1] | [Sonoff 4CH]                 | X |   | X |   |   |
+| [smartmeter] | [Wemos D1 mini Pro v1.0.0] |   | X |   |   | X |
+| [ventilation] | [Sonoff Pow]              | X |   |   | X |   |
+| [veranda_wcd] | [Shelly 1]                |   |   |   |   |   |
 
 ## Sensors
 
 | device | bme280 | dallas | hlw8012 | dht22 |
 | -- |:--:|:--:|:--:|:--:|
-| [attic_1]     |   |   |   |   |
+| [attic_1]     | X |   |   |   |
 | [bedroom_1]   | X |   |   |   |
 | [bedroom_2]   |   |   |   |   |
 | [garage]      |   | X |   | X |
@@ -35,7 +35,7 @@ This page is the starting point for all installation and configuration documenta
 ### Installing python
 Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`.
 
-### Activating up a virtual environment with esphome
+### Activating a virtual environment with esphome
 There's an install script. Execute it with `. install.sh`
 > Once setup, the virtual environment can be activated with `. venv/bin/activate`
 
@@ -59,4 +59,4 @@ There's an install script. Execute it with `. install.sh`
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
 [script]: https://esphome.io/guides/automations.html#script-execute-action
-[gpio power]: PoweringSensors.md
+[GPIO power]: PoweringSensors.md
