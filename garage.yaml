@@ -31,7 +31,7 @@ status_led:
 
 dallas:
   - pin: D7
-    update_interval: 5min
+    update_interval: 10min
 
 output:
   - platform: gpio
@@ -57,4 +57,4 @@ sensor:
       name: ${name} Temperatuur
     humidity:
       name: ${name} Luchtvochtigheid
-    update_interval: 5min
+    update_interval: 10min

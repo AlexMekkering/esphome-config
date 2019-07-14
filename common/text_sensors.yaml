@@ -1,4 +1,3 @@
 ---
 - !include text_sensor/version.yaml
-- !include text_sensor/pretty-uptime.yaml
 - !include text_sensor/wifi-info.yaml

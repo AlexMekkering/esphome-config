@@ -41,7 +41,7 @@ sensor:
     humidity:
       name: ${name} Luchtvochtigheid
     address: 0x76
-    update_interval: 5min
+    update_interval: 10min
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml

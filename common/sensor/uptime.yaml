@@ -1,4 +1,6 @@
 ---
 platform: uptime
-id: uptime_raw
-update_interval: 5min
+name: ${name} Uptime
+unit_of_measurement: h
+filters:
+  - lambda: return int((x + 1800.0) / 3600.0);
