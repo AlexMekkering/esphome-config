@@ -85,17 +85,8 @@ binary_sensor:
 
 output:
   - platform: gpio
-    pin: GPIO12
-    id: relay_1
-  - platform: gpio
-    pin: GPIO5
-    id: relay_2
-  - platform: gpio
     pin: GPIO4
     id: relay_3
-  - platform: gpio
-    pin: GPIO15
-    id: relay_4
 
 light:
   - platform: binary
@@ -105,15 +96,18 @@ light:
 
 switch:
   - !include common/switch/restart.yaml
-  - platform: output
+  - platform: gpio
+    pin: GPIO12
     name: ${name} TV
-    output: relay_1
     id: tv
-  - platform: output
+    icon: mdi:television
+  - platform: gpio
+    pin: GPIO5
     name: ${name} Receiver
-    output: relay_2
     id: receiver
-  - platform: output
+    icon: mdi:speaker
+  - platform: gpio
+    pin: GPIO15
     name: ${name} Mediaplayer
-    output: relay_4
     id: mediaplayer
+    icon: mdi:kodi

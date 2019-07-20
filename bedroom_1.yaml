@@ -76,9 +76,6 @@ output:
   - platform: gpio
     pin: GPIO5
     id: relay_2
-  - platform: gpio
-    pin: GPIO4
-    id: relay_3
 
 light:
   - platform: binary
@@ -92,8 +89,8 @@ light:
 
 switch:
   - !include common/switch/restart.yaml
-  - platform: output
+  - platform: gpio
+    pin: GPIO4
     name: ${name} TV
-    output: relay_3
     id: tv
     icon: mdi:television
