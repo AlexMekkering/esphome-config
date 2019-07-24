@@ -14,34 +14,24 @@ esphome:
 
 wifi: !include common/wifi.yaml
 api: !include common/api.yaml
-logger:
-  level: INFO
-  baud_rate: 0
+logger: !include common/logger.yaml
 ota: !include common/ota.yaml
 web_server: !include common/web_server.yaml
 text_sensor: !include common/text_sensors.yaml
+sensor: !include common/sensors.yaml
 
 status_led:
   pin:
     number: GPIO13
     inverted: true
 
-i2c:
-  sda: GPIO2
-  scl: RX
-
-sensor:
-  - !include common/sensor/wifi-signal.yaml
-  - !include common/sensor/uptime.yaml
-  - platform: bme280
-    temperature:
-      name: ${name} Temperatuur
-    pressure:
-      name: ${name} Luchtdruk
-    humidity:
-      name: ${name} Luchtvochtigheid
-    address: 0x76
-    update_interval: 10min
+remote_receiver:
+  pin: GPIO2
+  dump:
+    - rc_switch
+  tolerance: 60%
+  filter: 4us
+  idle: 4ms
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
@@ -78,6 +68,36 @@ binary_sensor:
       number: GPIO14
       mode: INPUT_PULLUP
       inverted: true
+  - platform: remote_receiver
+    id: rf_button_pc
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_attic_pc
+    filters:
+      - delayed_off: 100ms
+    on_press:
+      then:
+        - switch.toggle: pc
+  - platform: remote_receiver
+    id: rf_button_printer
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_printer
+    filters:
+      - delayed_off: 100ms
+    on_press:
+      then:
+        - switch.toggle: printer
+  - platform: remote_receiver
+    id: rf_button_desk_lamp
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_attic_desk_lamp
+    filters:
+      - delayed_off: 100ms
+    on_press:
+      then:
+        - light.toggle: bureaulamp
 
 output:
   - platform: gpio
