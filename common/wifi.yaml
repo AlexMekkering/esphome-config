@@ -1,6 +1,6 @@
 ---
-ssid: !secret home_wifi_ssid
-password: !secret home_wifi_password
+ssid: !secret wifi_ssid
+password: !secret wifi_password
 reboot_timeout: ${reboot_timeout}
 ap:
   ssid: ${device}
