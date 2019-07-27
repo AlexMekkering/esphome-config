@@ -15,13 +15,13 @@ This page is the starting point for all installation and configuration documenta
 | [living_1]    | [Sonoff 4CH]                | X |   | X |   |   |
 | [smartmeter]  | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   | X |
 | [ventilation] | [Sonoff Pow]                | X |   | X | X |   |
-| [veranda_wcd] | [Shelly 1]                  |   |   |   |   |   |
+| [veranda_wcd] | [Shelly 1]                  | X |   |   |   |   |
 
 ## Sensors
 
 | device | bme280 | dallas | hlw8012 | dht22 | [RF receiver] |
 | -- |:--:|:--:|:--:|:--:|:--:|
-| [attic_1]     | X |   |   |   | X |
+| [attic_1]     |   |   |   |   | X |
 | [bedroom_1]   | X |   |   |   |   |
 | [bedroom_2]   |   |   |   |   | X |
 | [garage]      |   | X |   | X |   |
@@ -44,7 +44,9 @@ The yaml files refer to secrets which are configured in `secrets.yaml` and `comm
 For this, you can copy the [Travis Secrets] and [Common Travis Secrets] to the respective `secrets.yaml` files and fill in your secrets.
 
 # Knowledge base
-* [Powering sensors](PoweringSensors.md)
+- [Powering sensors](PoweringSensors.md)
+- [Using UART as GPIO](UARTasGPIO.md)
+- [Receiving RF Codes](RFReceiver.md)
 
 [Travis Secrets]: https://github.com/AlexMekkering/esphome-config/blob/master/.travis-secrets.yaml
 [Common Travis Secrets]: https://github.com/AlexMekkering/esphome-config/blob/master/common/.travis-secrets.yaml
