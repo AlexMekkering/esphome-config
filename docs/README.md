@@ -4,9 +4,22 @@ This page is the starting point for all installation and configuration documenta
 
 # Current setup
 
-## Device types & firmware features
+## Common firmware features
+The following features are implemented for every device
+- [Wifi](https://esphome.io/components/wifi.html) with failover [Access Point Mode](https://esphome.io/components/wifi.html#access-point-mode)
+- [Over The Air](https://esphome.io/components/ota.html) firware updates
+- [Native API](https://esphome.io/components/api.html)
+- [Web Server](https://esphome.io/components/web_server.html)
+- [Status Binary Sensor](https://esphome.io/components/binary_sensor/status.html)
+- [Wifi Info Text Sensor](https://esphome.io/components/text_sensor/wifi_info.html) (IP, SSID & BSSID)
+- [Version Text Sensor](https://esphome.io/components/text_sensor/version.html)
+- [Uptime Sensor](https://esphome.io/components/sensor/uptime.html) rounded to the hour to reduce updates
+- [Restart Switch](https://esphome.io/components/switch/restart.html)
+- Update interval of 10 minutes for most sensors to reduce updates
 
-| device | type | physical button | [GPIO power] | [UART GPIO] | [script] | custom sensor |
+## Device types & specific firmware features
+
+| Device | Type | Physical button | [GPIO power] | [UART GPIO] | [Script] | [Custom Sensor] |
 | -- | -- |:--:|:--:|:--:|:--:|:--:|
 | [attic_1]     | [Sonoff 4CH R2]             | X |   |   |   |   |
 | [bedroom_1]   | [Sonoff 4CH Pro]            | X |   | X |   |   |
@@ -19,16 +32,16 @@ This page is the starting point for all installation and configuration documenta
 
 ## Sensors
 
-| device | bme280 | dallas | hlw8012 | dht22 | [RF receiver] |
-| -- |:--:|:--:|:--:|:--:|:--:|
-| [attic_1]     |   |   |   |   | X |
-| [bedroom_1]   | X |   |   |   |   |
-| [bedroom_2]   |   |   |   |   | X |
-| [garage]      |   | X |   | X |   |
-| [living_1]    | X |   |   |   |   |
-| [smartmeter]  | X |   |   |   |   |
-| [ventilation] |   |   | X |   | X |
-| [veranda_wcd] |   |   |   |   |   |
+| Device | [Status LED] | [bme280] ([i2c])  | [dallas] | [hlw8012] | [dht22] | [RF receiver] |
+| -- |:--:|:--:|:--:|:--:|:--:|:--:|
+| [attic_1]     | X |   |   |   |   | X |
+| [bedroom_1]   |   | X |   |   |   |   |
+| [bedroom_2]   |   |   |   |   |   | X |
+| [garage]      | X |   | X |   | X |   |
+| [living_1]    | X | X |   |   |   |   |
+| [smartmeter]  | X | X |   |   |   |   |
+| [ventilation] | X |   |   | X |   | X |
+| [veranda_wcd] |   |   |   |   |   |   |
 
 # Installation
 ## Arch Linux
@@ -66,7 +79,14 @@ For this, you can copy the [Travis Secrets] and [Common Travis Secrets] to the r
 [Sonoff 4CH Pro]: https://www.itead.cc/sonoff-4ch-pro.html
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
-[script]: https://esphome.io/guides/automations.html#script-execute-action
+[Script]: https://esphome.io/guides/automations.html#script-execute-action
+[Custom Sensor]: https://esphome.io/components/sensor/custom.html
 [GPIO power]: PoweringSensors.md
 [UART GPIO]: UARTasGPIO.md
+[Status LED]: https://esphome.io/components/status_led.html
+[bme280]: https://esphome.io/components/sensor/bme280.html
+[i2c]: https://esphome.io/components/i2c.html
+[dallas]: https://esphome.io/components/sensor/dallas.html
+[hlw8012]: https://esphome.io/components/sensor/hlw8012.html
+[dht22]: https://esphome.io/components/sensor/dht.html
 [RF Receiver]: RFReceiver.md
