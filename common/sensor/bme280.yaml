@@ -1,0 +1,10 @@
+---
+platform: bme280
+temperature:
+  name: ${location} Temperatuur
+pressure:
+  name: ${location} Luchtdruk
+humidity:
+  name: ${location} Luchtvochtigheid
+address: 0x76
+update_interval: 10min
