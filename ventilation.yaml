@@ -4,6 +4,7 @@ substitutions:
   name: Ventilatie
   reboot_timeout: 14d
   threshold: '15'
+  update_interval: 10min
 
 esphome:
   name: ${device}

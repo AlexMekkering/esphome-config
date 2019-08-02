@@ -1,4 +1,4 @@
 ---
 platform: wifi_signal
 name: ${name} WiFi Signal
-update_interval: 10min
+update_interval: ${update_interval}

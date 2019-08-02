@@ -7,4 +7,4 @@ pressure:
 humidity:
   name: ${location} Luchtvochtigheid
 address: 0x76
-update_interval: 10min
+update_interval: ${update_interval}

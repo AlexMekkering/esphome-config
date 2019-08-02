@@ -3,6 +3,7 @@ substitutions:
   device: test
   name: Test
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

@@ -5,6 +5,7 @@ substitutions:
   device: veranda_wcd
   name: Veranda Wandcontactdoos
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

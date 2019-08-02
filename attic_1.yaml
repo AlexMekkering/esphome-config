@@ -3,6 +3,7 @@ substitutions:
   device: attic_1
   name: Zolder
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

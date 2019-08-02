@@ -3,6 +3,7 @@ substitutions:
   device: bedroom_2
   name: Slaapkamer Achterwand
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

@@ -3,6 +3,7 @@ substitutions:
   device: garage
   name: Garage
   reboot_timeout: 1h
+  update_interval: 10min
 
 esphome:
   name: ${device}
@@ -25,7 +26,7 @@ status_led:
 
 dallas:
   - pin: D7
-    update_interval: 10min
+    update_interval: ${update_interval}
 
 output:
   - platform: gpio
@@ -51,4 +52,4 @@ sensor:
       name: ${name} Temperatuur
     humidity:
       name: ${name} Luchtvochtigheid
-    update_interval: 10min
+    update_interval: ${update_interval}

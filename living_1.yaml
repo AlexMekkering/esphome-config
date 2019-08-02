@@ -4,6 +4,7 @@ substitutions:
   name: TV Meubel
   location: Woonkamer
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

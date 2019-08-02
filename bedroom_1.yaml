@@ -2,8 +2,9 @@
 substitutions:
   device: bedroom_1
   name: Slaapkamer
-  location: Slaapkamer
+  location: ${name}
   reboot_timeout: 14d
+  update_interval: 10min
 
 esphome:
   name: ${device}

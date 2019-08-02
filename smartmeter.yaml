@@ -4,6 +4,7 @@ substitutions:
   name: Smartmeter
   location: Meterkast
   reboot_timeout: 1h
+  update_interval: 10min
 
 esphome:
   name: ${device}
