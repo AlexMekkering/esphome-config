@@ -7,18 +7,12 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: esp01_1m
-  board_flash_mode: dout
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
-logger: !include common/logger.yaml
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
-sensor: !include common/sensors.yaml
+<<: !include common/common.yaml
+<<: !include common/sensors.yaml
+<<: !include common/switches.yaml
+<<: !include common/logger.yaml
 
 status_led:
   pin:
@@ -26,102 +20,93 @@ status_led:
     inverted: true
 
 remote_receiver:
+  <<: !include common/rf_receiver.yaml
   pin: GPIO2
-  dump:
-    - rc_switch
-  tolerance: 60%
-  filter: 4us
-  idle: 4ms
 
 binary_sensor:
-  - !include common/binary_sensor/status.yaml
-  - platform: gpio
-    id: button_1
-    pin:
-      number: GPIO0
+- !include common/binary_sensor/status.yaml
+- platform: gpio
+  id: button_1
+  pin:
+    number: GPIO0
+    <<: &input_pullup
       mode: INPUT_PULLUP
       inverted: true
-    on_press:
-      then:
-        - switch.toggle: pc
-  - platform: gpio
-    id: button_2
-    pin:
-      number: GPIO9
-      mode: INPUT_PULLUP
-      inverted: true
-    on_press:
-      then:
-        - switch.toggle: printer
-  - platform: gpio
-    id: button_3
-    pin:
-      number: GPIO10
-      mode: INPUT_PULLUP
-      inverted: true
-    on_press:
-      then:
-        - light.toggle: bureaulamp
-  - platform: gpio
-    id: button_4
-    pin:
-      number: GPIO14
-      mode: INPUT_PULLUP
-      inverted: true
-  - platform: remote_receiver
-    id: rf_button_pc
-    rc_switch_raw:
-      protocol: 1
-      code: !secret rf_code_attic_pc
-    filters:
-      - delayed_off: 100ms
-    on_press:
-      then:
-        - switch.toggle: pc
-  - platform: remote_receiver
-    id: rf_button_printer
-    rc_switch_raw:
-      protocol: 1
-      code: !secret rf_code_printer
-    filters:
-      - delayed_off: 100ms
-    on_press:
-      then:
-        - switch.toggle: printer
-  - platform: remote_receiver
-    id: rf_button_desk_lamp
-    rc_switch_raw:
-      protocol: 1
-      code: !secret rf_code_attic_desk_lamp
-    filters:
-      - delayed_off: 100ms
-    on_press:
-      then:
-        - light.toggle: bureaulamp
+  on_press:
+    then:
+    - switch.toggle: pc
+- platform: gpio
+  id: button_2
+  pin:
+    number: GPIO9
+    <<: *input_pullup
+  on_press:
+    then:
+    - switch.toggle: printer
+- platform: gpio
+  id: button_3
+  pin:
+    number: GPIO10
+    <<: *input_pullup
+  on_press:
+    then:
+    - light.toggle: bureaulamp
+- platform: gpio
+  id: button_4
+  pin:
+    number: GPIO14
+    <<: *input_pullup
+- platform: remote_receiver
+  <<: !include common/rf_receiver_sensor.yaml
+  id: rf_button_pc
+  rc_switch_raw:
+    protocol: 1
+    code: !secret rf_code_attic_pc
+  on_press:
+    then:
+    - switch.toggle: pc
+- platform: remote_receiver
+  <<: !include common/rf_receiver_sensor.yaml
+  id: rf_button_printer
+  rc_switch_raw:
+    protocol: 1
+    code: !secret rf_code_printer
+  on_press:
+    then:
+    - switch.toggle: printer
+- platform: remote_receiver
+  <<: !include common/rf_receiver_sensor.yaml
+  id: rf_button_desk_lamp
+  rc_switch_raw:
+    protocol: 1
+    code: !secret rf_code_attic_desk_lamp
+  on_press:
+    then:
+    - light.toggle: bureaulamp
 
 output:
-  - platform: gpio
-    pin: GPIO4
-    id: relay_3
-  - platform: gpio
-    pin: GPIO15
-    id: relay_4
+- platform: gpio
+  pin: GPIO4
+  id: relay_3
+- platform: gpio
+  pin: GPIO15
+  id: relay_4
 
 light:
-  - platform: binary
-    name: ${name} Bureaulamp
-    output: relay_3
-    id: bureaulamp
+- platform: binary
+  name: ${name} Bureaulamp
+  output: relay_3
+  id: bureaulamp
 
 switch:
-  - !include common/switch/restart.yaml
-  - platform: gpio
-    name: ${name} PC
-    pin: GPIO12
-    id: pc
-    icon: mdi:laptop
-  - platform: gpio
-    name: ${name} Printer
-    pin: GPIO5
-    id: printer
-    icon: mdi:printer
+- !include common/switch/restart.yaml
+- platform: gpio
+  name: ${name} PC
+  pin: GPIO12
+  id: pc
+  icon: mdi:laptop
+- platform: gpio
+  name: ${name} Printer
+  pin: GPIO5
+  id: printer
+  icon: mdi:printer

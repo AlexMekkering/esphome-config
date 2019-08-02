@@ -8,123 +8,111 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: esp01_1m
-  board_flash_mode: dout
   on_boot:
-    - script.execute: shutdown
+  - script.execute: shutdown
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
+<<: !include common/common.yaml
 logger:
   level: INFO
   baud_rate: 0
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
 
 status_led:
   pin:
     number: GPIO15
 
 globals:
-  - id: activated
-    type: bool
-    restore_value: true
-    initial_value: 'false'
+- id: activated
+  type: bool
+  restore_value: true
+  initial_value: 'false'
 
 script:
-  - id: shutdown
-    then:
-      - if:
-          condition:
-            lambda: return id(activated) && id(fan).state;
-          then:
-            - wait_until:
-                sensor.in_range:
-                  id: power
-                  below: ${threshold}
-            - delay: 30min
-            - switch.turn_off: fan
-            - lambda: id(activated) = false;
-          else:
-            - lambda: id(activated) = false;
+- id: shutdown
+  then:
+  - if:
+      condition:
+        lambda: return id(activated) && id(fan).state;
+      then:
+      - wait_until:
+          sensor.in_range:
+            id: power
+            below: ${threshold}
+      - delay: 30min
+      - switch.turn_off: fan
+      - lambda: id(activated) = false;
+      else:
+      - lambda: id(activated) = false;
 
 remote_receiver:
+  <<: !include common/rf_receiver.yaml
   pin: RX
-  dump:
-    - rc_switch
-  tolerance: 60%
-  filter: 4us
-  idle: 4ms
 
 sensor:
-  - !include common/sensor/wifi-signal.yaml
-  - !include common/sensor/uptime.yaml
-  - platform: hlw8012
-    sel_pin: 5
-    cf_pin: 14
-    cf1_pin: 13
-    current:
-      name: ${name} Current
-      icon: mdi:current-ac
-    voltage:
-      name: ${name} Voltage
-      icon: mdi:flash
-    power:
-      id: power
-      name: ${name} Power
-      icon: mdi:power-plug
-      on_value_range:
-        - above: ${threshold}
-          then:
-            - script.stop: shutdown
-            - lambda: id(activated) = true;
-            - script.execute: shutdown
-
-binary_sensor:
-  - !include common/binary_sensor/status.yaml
-  - platform: gpio
-    id: button_1
-    pin:
-      number: GPIO0
-      mode: INPUT_PULLUP
-      inverted: true
-    on_press:
+- !include common/sensor/wifi-signal.yaml
+- !include common/sensor/uptime.yaml
+- platform: hlw8012
+  sel_pin: 5
+  cf_pin: 14
+  cf1_pin: 13
+  current:
+    name: ${name} Current
+    icon: mdi:current-ac
+  voltage:
+    name: ${name} Voltage
+    icon: mdi:flash
+  power:
+    id: power
+    name: ${name} Power
+    icon: mdi:power-plug
+    on_value_range:
+    - above: ${threshold}
       then:
-        - switch.toggle: fan
-  - platform: template
-    name: ${name} Activated
-    lambda: return id(activated);
-  - platform: remote_receiver
-    id: rf_button_ventilation
-    rc_switch_raw:
-      protocol: 1
-      code: !secret rf_code_ventilation
-    filters:
-      - delayed_off: 100ms
-    on_press:
-      then:
-        - switch.turn_on: fan
-
-switch:
-  - !include common/switch/restart.yaml
-  - platform: gpio
-    pin: GPIO12
-    name: ${name}
-    icon: mdi:fan
-    id: fan
-    on_turn_off:
       - script.stop: shutdown
-      - lambda: id(activated) = false;
-  - platform: template
-    name: ${name} Auto Poweroff
-    icon: mdi:timer-off
-    lambda: return id(activated);
-    turn_on_action:
       - lambda: id(activated) = true;
       - script.execute: shutdown
-    turn_off_action:
-      - script.stop: shutdown
-      - lambda: id(activated) = false;
+
+binary_sensor:
+- !include common/binary_sensor/status.yaml
+- platform: gpio
+  id: button_1
+  pin:
+    number: GPIO0
+    mode: INPUT_PULLUP
+    inverted: true
+  on_press:
+    then:
+    - switch.toggle: fan
+- platform: template
+  name: ${name} Activated
+  lambda: return id(activated);
+- platform: remote_receiver
+  <<: !include common/rf_receiver_sensor.yaml
+  id: rf_button_ventilation
+  rc_switch_raw:
+    protocol: 1
+    code: !secret rf_code_ventilation
+  on_press:
+    then:
+    - switch.turn_on: fan
+
+switch:
+- !include common/switch/restart.yaml
+- platform: gpio
+  pin: GPIO12
+  name: ${name}
+  icon: mdi:fan
+  id: fan
+  on_turn_off:
+  - script.stop: shutdown
+  - lambda: id(activated) = false;
+- platform: template
+  name: ${name} Auto Poweroff
+  icon: mdi:timer-off
+  lambda: return id(activated);
+  turn_on_action:
+  - lambda: id(activated) = true;
+  - script.execute: shutdown
+  turn_off_action:
+  - script.stop: shutdown
+  - lambda: id(activated) = false;

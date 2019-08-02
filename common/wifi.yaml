@@ -1,7 +1,8 @@
 ---
-ssid: !secret wifi_ssid
-password: !secret wifi_password
-reboot_timeout: ${reboot_timeout}
-ap:
-  ssid: ${device}
-  password: !secret ap_wifi_password
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  reboot_timeout: ${reboot_timeout}
+  ap:
+    ssid: ${device}
+    password: !secret ap_wifi_password
