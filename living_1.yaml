@@ -8,19 +8,12 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: esp01_1m
-  board_flash_mode: dout
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
+<<: !include common/common.yaml
 logger:
   level: INFO
   baud_rate: 0
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
 
 status_led:
   pin:
@@ -34,15 +27,7 @@ i2c:
 sensor:
   - !include common/sensor/wifi-signal.yaml
   - !include common/sensor/uptime.yaml
-  - platform: bme280
-    temperature:
-      name: ${location} Temperatuur
-    pressure:
-      name: ${location} Luchtdruk
-    humidity:
-      name: ${location} Luchtvochtigheid
-    address: 0x76
-    update_interval: 10min
+  - !include common/sensor/bme280.yaml
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
@@ -50,8 +35,9 @@ binary_sensor:
     id: button_1
     pin:
       number: GPIO0
-      mode: INPUT_PULLUP
-      inverted: true
+      <<: &input_pullup
+        mode: INPUT_PULLUP
+        inverted: true
     on_press:
       then:
         - switch.toggle: tv
@@ -59,8 +45,7 @@ binary_sensor:
     id: button_2
     pin:
       number: GPIO9
-      mode: INPUT_PULLUP
-      inverted: true
+      <<: *input_pullup
     on_press:
       then:
         - switch.toggle: receiver
@@ -68,8 +53,7 @@ binary_sensor:
     id: button_3
     pin:
       number: GPIO10
-      mode: INPUT_PULLUP
-      inverted: true
+      <<: *input_pullup
     on_press:
       then:
         - light.toggle: spruitje
@@ -77,8 +61,7 @@ binary_sensor:
     id: button_4
     pin:
       number: GPIO14
-      mode: INPUT_PULLUP
-      inverted: true
+      <<: *input_pullup
     on_press:
       then:
         - switch.toggle: mediaplayer

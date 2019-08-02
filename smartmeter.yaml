@@ -8,8 +8,6 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: d1_mini_pro
   includes:
     - smartmeter.h
@@ -19,14 +17,10 @@ esphome:
         - output.turn_on: sm_supply
         - output.turn_off: bme_gnd
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
-logger: !include common/logger.yaml
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
-binary_sensor: !include common/binary_sensors.yaml
-switch: !include common/switches.yaml
+<<: !include common/common.yaml
+<<: !include common/logger.yaml
+<<: !include common/binary_sensors.yaml
+<<: !include common/switches.yaml
 
 status_led:
   pin:
@@ -51,14 +45,7 @@ output:
 sensor:
   - !include common/sensor/wifi-signal.yaml
   - !include common/sensor/uptime.yaml
-  - platform: bme280
-    temperature:
-      name: ${location} Temperatuur
-    pressure:
-      name: ${location} Luchtdruk
-    humidity:
-      name: ${location} Luchtvochtigheid
-    address: 0x76
+  - !include common/sensor/bme280.yaml
   - platform: custom
     lambda: |-
       auto smartmeter_sensor = new SmartMeterSensor(12, 10000, 1000.0);

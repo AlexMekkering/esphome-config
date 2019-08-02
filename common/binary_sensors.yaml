@@ -1,2 +1,3 @@
 ---
-- !include binary_sensor/status.yaml
+binary_sensor:
+  - !include binary_sensor/status.yaml

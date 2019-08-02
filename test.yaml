@@ -8,18 +8,12 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: nodemcuv2
-  platformio_options:
-    lib_ldf_mode: deep
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
+<<: !include common/common.yaml
+<<: !include common/switches.yaml
+<<: !include common/sensors.yaml
 logger:
   level: DEBUG
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
-switch: !include common/switches.yaml
-sensor: !include common/sensors.yaml
 
 status_led:
   pin:
@@ -27,18 +21,13 @@ status_led:
     inverted: true
 
 remote_receiver:
+  <<: !include common/rf_receiver.yaml
   pin: D6
-  dump:
-    - rc_switch
-  tolerance: 60%
-  filter: 4us
-  idle: 4ms
 
 binary_sensor:
   - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
     name: RF Button Test
     rc_switch_raw:
       protocol: 1
       code: !secret rf_code_test
-    filters:
-      - delayed_off: 100ms

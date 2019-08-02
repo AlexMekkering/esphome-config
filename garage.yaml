@@ -7,22 +7,16 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: d1_mini_pro
   on_boot:
     - priority: 90
       then:
         - output.turn_on: dht_supply
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
-logger: !include common/logger.yaml
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
-binary_sensor: !include common/binary_sensors.yaml
-switch: !include common/switches.yaml
+<<: !include common/common.yaml
+<<: !include common/logger.yaml
+<<: !include common/binary_sensors.yaml
+<<: !include common/switches.yaml
 
 status_led:
   pin:

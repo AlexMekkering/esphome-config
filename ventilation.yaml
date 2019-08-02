@@ -8,21 +8,14 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: esp01_1m
-  board_flash_mode: dout
   on_boot:
     - script.execute: shutdown
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
+<<: !include common/common.yaml
 logger:
   level: INFO
   baud_rate: 0
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
 
 status_led:
   pin:
@@ -52,12 +45,8 @@ script:
             - lambda: id(activated) = false;
 
 remote_receiver:
+  <<: !include common/rf_receiver.yaml
   pin: RX
-  dump:
-    - rc_switch
-  tolerance: 60%
-  filter: 4us
-  idle: 4ms
 
 sensor:
   - !include common/sensor/wifi-signal.yaml
@@ -98,12 +87,11 @@ binary_sensor:
     name: ${name} Activated
     lambda: return id(activated);
   - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
     id: rf_button_ventilation
     rc_switch_raw:
       protocol: 1
       code: !secret rf_code_ventilation
-    filters:
-      - delayed_off: 100ms
     on_press:
       then:
         - switch.turn_on: fan

@@ -1,2 +1,3 @@
 ---
-- !include switch/restart.yaml
+switch:
+  - !include switch/restart.yaml

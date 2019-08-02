@@ -7,29 +7,18 @@ substitutions:
 esphome:
   name: ${device}
   platform: ESP8266
-  platformio_options:
-    lib_ldf_mode: deep
   board: esp01_1m
-  board_flash_mode: dout
 
-wifi: !include common/wifi.yaml
-api: !include common/api.yaml
+<<: !include common/common.yaml
+<<: !include common/sensors.yaml
+<<: !include common/switches.yaml
 logger:
   level: INFO
   baud_rate: 0
-ota: !include common/ota.yaml
-web_server: !include common/web_server.yaml
-text_sensor: !include common/text_sensors.yaml
-sensor: !include common/sensors.yaml
-switch: !include common/switches.yaml
 
 remote_receiver:
+  <<: !include common/rf_receiver.yaml
   pin: RX
-  dump:
-    - rc_switch
-  tolerance: 60%
-  filter: 4us
-  idle: 4ms
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
@@ -43,22 +32,20 @@ binary_sensor:
       then:
         - light.toggle: light_1
   - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
     id: rf_button_bedroom_back_wall
     rc_switch_raw:
       protocol: 1
       code: !secret rf_code_bedroom_back_wall
-    filters:
-      - delayed_off: 100ms
     on_press:
       then:
         - light.toggle: light_1
   - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
     name: RF Button TV Slaapkamer
     rc_switch_raw:
       protocol: 1
       code: !secret rf_code_bedroom_tv
-    filters:
-      - delayed_off: 100ms
 
 output:
   - platform: gpio
