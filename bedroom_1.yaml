@@ -20,61 +20,61 @@ i2c:
   scl: RX
 
 sensor:
-- !include common/sensor/wifi-signal.yaml
-- !include common/sensor/uptime.yaml
-- !include common/sensor/bme280.yaml
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/bme280.yaml
 
 binary_sensor:
-- !include common/binary_sensor/status.yaml
-- platform: gpio
-  id: button_1
-  pin:
-    number: GPIO0
-    <<: &input_pullup
-      mode: INPUT_PULLUP
-      inverted: true
-  on_press:
-    then:
-      - light.toggle: nachtlampje_alex
-- platform: gpio
-  id: button_2
-  pin:
-    number: GPIO9
-    <<: *input_pullup
-  on_press:
-    then:
-      - light.toggle: nachtlampje_joyce
-- platform: gpio
-  id: button_3
-  pin:
-    number: GPIO10
-    <<: *input_pullup
-  on_press:
-    then:
-      - switch.toggle: tv
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: button_1
+    pin:
+      number: GPIO0
+      <<: &input_pullup
+        mode: INPUT_PULLUP
+        inverted: true
+    on_press:
+      then:
+        - light.toggle: nachtlampje_alex
+  - platform: gpio
+    id: button_2
+    pin:
+      number: GPIO9
+      <<: *input_pullup
+    on_press:
+      then:
+        - light.toggle: nachtlampje_joyce
+  - platform: gpio
+    id: button_3
+    pin:
+      number: GPIO10
+      <<: *input_pullup
+    on_press:
+      then:
+        - switch.toggle: tv
 
 output:
-- platform: gpio
-  pin: GPIO12
-  id: relay_1
-- platform: gpio
-  pin: GPIO5
-  id: relay_2
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
+  - platform: gpio
+    pin: GPIO5
+    id: relay_2
 
 light:
-- platform: binary
-  name: Nachtlampje Alex
-  output: relay_1
-  id: nachtlampje_alex
-- platform: binary
-  name: Nachtlampje Joyce
-  output: relay_2
-  id: nachtlampje_joyce
+  - platform: binary
+    name: Nachtlampje Alex
+    output: relay_1
+    id: nachtlampje_alex
+  - platform: binary
+    name: Nachtlampje Joyce
+    output: relay_2
+    id: nachtlampje_joyce
 
 switch:
-- !include common/switch/restart.yaml
-- platform: gpio
-  pin: GPIO4
-  name: ${name} TV
-  id: tv
-  icon: mdi:television
+  - !include common/switch/restart.yaml
+  - platform: gpio
+    pin: GPIO4
+    name: ${name} TV
+    id: tv
+    icon: mdi:television

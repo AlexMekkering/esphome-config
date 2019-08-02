@@ -21,39 +21,39 @@ remote_receiver:
   pin: RX
 
 binary_sensor:
-- !include common/binary_sensor/status.yaml
-- platform: gpio
-  id: button_1
-  pin:
-    number: GPIO0
-    mode: INPUT_PULLUP
-    inverted: true
-  on_press:
-    then:
-    - light.toggle: light_1
-- platform: remote_receiver
-  <<: !include common/rf_receiver_sensor.yaml
-  id: rf_button_bedroom_back_wall
-  rc_switch_raw:
-    protocol: 1
-    code: !secret rf_code_bedroom_back_wall
-  on_press:
-    then:
-    - light.toggle: light_1
-- platform: remote_receiver
-  <<: !include common/rf_receiver_sensor.yaml
-  name: RF Button TV Slaapkamer
-  rc_switch_raw:
-    protocol: 1
-    code: !secret rf_code_bedroom_tv
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: button_1
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - light.toggle: light_1
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    id: rf_button_bedroom_back_wall
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_bedroom_back_wall
+    on_press:
+      then:
+        - light.toggle: light_1
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button TV Slaapkamer
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_bedroom_tv
 
 output:
-- platform: gpio
-  pin: GPIO12
-  id: relay_1
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
 
 light:
-- platform: binary
-  name: ${name}
-  output: relay_1
-  id: light_1
+  - platform: binary
+    name: ${name}
+    output: relay_1
+    id: light_1

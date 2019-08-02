@@ -10,7 +10,7 @@ esphome:
   platform: ESP8266
   board: esp01_1m
   on_boot:
-  - script.execute: shutdown
+    - script.execute: shutdown
 
 <<: !include common/common.yaml
 logger:
@@ -22,97 +22,97 @@ status_led:
     number: GPIO15
 
 globals:
-- id: activated
-  type: bool
-  restore_value: true
-  initial_value: 'false'
+  - id: activated
+    type: bool
+    restore_value: true
+    initial_value: 'false'
 
 script:
-- id: shutdown
-  then:
-  - if:
-      condition:
-        lambda: return id(activated) && id(fan).state;
-      then:
-      - wait_until:
-          sensor.in_range:
-            id: power
-            below: ${threshold}
-      - delay: 30min
-      - switch.turn_off: fan
-      - lambda: id(activated) = false;
-      else:
-      - lambda: id(activated) = false;
+  - id: shutdown
+    then:
+      - if:
+          condition:
+            lambda: return id(activated) && id(fan).state;
+          then:
+            - wait_until:
+                sensor.in_range:
+                  id: power
+                  below: ${threshold}
+            - delay: 30min
+            - switch.turn_off: fan
+            - lambda: id(activated) = false;
+          else:
+            - lambda: id(activated) = false;
 
 remote_receiver:
   <<: !include common/rf_receiver.yaml
   pin: RX
 
 sensor:
-- !include common/sensor/wifi-signal.yaml
-- !include common/sensor/uptime.yaml
-- platform: hlw8012
-  sel_pin: 5
-  cf_pin: 14
-  cf1_pin: 13
-  current:
-    name: ${name} Current
-    icon: mdi:current-ac
-  voltage:
-    name: ${name} Voltage
-    icon: mdi:flash
-  power:
-    id: power
-    name: ${name} Power
-    icon: mdi:power-plug
-    on_value_range:
-    - above: ${threshold}
-      then:
-      - script.stop: shutdown
-      - lambda: id(activated) = true;
-      - script.execute: shutdown
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - platform: hlw8012
+    sel_pin: 5
+    cf_pin: 14
+    cf1_pin: 13
+    current:
+      name: ${name} Current
+      icon: mdi:current-ac
+    voltage:
+      name: ${name} Voltage
+      icon: mdi:flash
+    power:
+      id: power
+      name: ${name} Power
+      icon: mdi:power-plug
+      on_value_range:
+        - above: ${threshold}
+          then:
+            - script.stop: shutdown
+            - lambda: id(activated) = true;
+            - script.execute: shutdown
 
 binary_sensor:
-- !include common/binary_sensor/status.yaml
-- platform: gpio
-  id: button_1
-  pin:
-    number: GPIO0
-    mode: INPUT_PULLUP
-    inverted: true
-  on_press:
-    then:
-    - switch.toggle: fan
-- platform: template
-  name: ${name} Activated
-  lambda: return id(activated);
-- platform: remote_receiver
-  <<: !include common/rf_receiver_sensor.yaml
-  id: rf_button_ventilation
-  rc_switch_raw:
-    protocol: 1
-    code: !secret rf_code_ventilation
-  on_press:
-    then:
-    - switch.turn_on: fan
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: button_1
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      then:
+        - switch.toggle: fan
+  - platform: template
+    name: ${name} Activated
+    lambda: return id(activated);
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    id: rf_button_ventilation
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_ventilation
+    on_press:
+      then:
+        - switch.turn_on: fan
 
 switch:
-- !include common/switch/restart.yaml
-- platform: gpio
-  pin: GPIO12
-  name: ${name}
-  icon: mdi:fan
-  id: fan
-  on_turn_off:
-  - script.stop: shutdown
-  - lambda: id(activated) = false;
-- platform: template
-  name: ${name} Auto Poweroff
-  icon: mdi:timer-off
-  lambda: return id(activated);
-  turn_on_action:
-  - lambda: id(activated) = true;
-  - script.execute: shutdown
-  turn_off_action:
-  - script.stop: shutdown
-  - lambda: id(activated) = false;
+  - !include common/switch/restart.yaml
+  - platform: gpio
+    pin: GPIO12
+    name: ${name}
+    icon: mdi:fan
+    id: fan
+    on_turn_off:
+      - script.stop: shutdown
+      - lambda: id(activated) = false;
+  - platform: template
+    name: ${name} Auto Poweroff
+    icon: mdi:timer-off
+    lambda: return id(activated);
+    turn_on_action:
+      - lambda: id(activated) = true;
+      - script.execute: shutdown
+    turn_off_action:
+      - script.stop: shutdown
+      - lambda: id(activated) = false;

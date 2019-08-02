@@ -9,9 +9,9 @@ esphome:
   platform: ESP8266
   board: d1_mini_pro
   on_boot:
-  - priority: 90
-    then:
-    - output.turn_on: dht_supply
+    - priority: 90
+      then:
+        - output.turn_on: dht_supply
 
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
@@ -24,31 +24,31 @@ status_led:
     inverted: true
 
 dallas:
-- pin: D7
-  update_interval: 10min
+  - pin: D7
+    update_interval: 10min
 
 output:
-- platform: gpio
-  pin: D8
-  id: dallas_gnd
-- platform: gpio
-  pin: D1
-  id: dht_gnd
-- platform: gpio
-  pin: D2
-  id: dht_supply
+  - platform: gpio
+    pin: D8
+    id: dallas_gnd
+  - platform: gpio
+    pin: D1
+    id: dht_gnd
+  - platform: gpio
+    pin: D2
+    id: dht_supply
 
 sensor:
-- !include common/sensor/wifi-signal.yaml
-- !include common/sensor/uptime.yaml
-- platform: dallas
-  address: 0xDE011438B6F4AA28
-  name: Buiten Temperatuur
-- platform: dht
-  model: DHT22
-  pin: D5
-  temperature:
-    name: ${name} Temperatuur
-  humidity:
-    name: ${name} Luchtvochtigheid
-  update_interval: 10min
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - platform: dallas
+    address: 0xDE011438B6F4AA28
+    name: Buiten Temperatuur
+  - platform: dht
+    model: DHT22
+    pin: D5
+    temperature:
+      name: ${name} Temperatuur
+    humidity:
+      name: ${name} Luchtvochtigheid
+    update_interval: 10min

@@ -10,12 +10,12 @@ esphome:
   platform: ESP8266
   board: d1_mini_pro
   includes:
-  - smartmeter.h
+    - smartmeter.h
   on_boot:
-  - priority: 90
-    then:
-    - output.turn_on: sm_supply
-    - output.turn_off: bme_gnd
+    - priority: 90
+      then:
+        - output.turn_on: sm_supply
+        - output.turn_off: bme_gnd
 
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
@@ -32,34 +32,34 @@ i2c:
   scl: D1
 
 output:
-- platform: gpio
-  pin: D3
-  id: bme_gnd
-- platform: gpio
-  pin: D5
-  id: sm_gnd
-- platform: gpio
-  pin: D7
-  id: sm_supply
+  - platform: gpio
+    pin: D3
+    id: bme_gnd
+  - platform: gpio
+    pin: D5
+    id: sm_gnd
+  - platform: gpio
+    pin: D7
+    id: sm_supply
 
 sensor:
-- !include common/sensor/wifi-signal.yaml
-- !include common/sensor/uptime.yaml
-- !include common/sensor/bme280.yaml
-- platform: custom
-  lambda: |-
-    auto smartmeter_sensor = new SmartMeterSensor(12, 10000, 1000.0);
-    App.register_component(smartmeter_sensor);
-    return {
-      smartmeter_sensor->power_consumption_sensor,
-      smartmeter_sensor->total_consumption_sensor
-    };
-  sensors:
-  - name: ${name} Power Consumption
-    unit_of_measurement: kW
-    accuracy_decimals: 3
-    icon: mdi:power-plug
-  - name: ${name} Total Consumption
-    unit_of_measurement: kWh
-    accuracy_decimals: 3
-    icon: mdi:sigma
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/bme280.yaml
+  - platform: custom
+    lambda: |-
+      auto smartmeter_sensor = new SmartMeterSensor(12, 10000, 1000.0);
+      App.register_component(smartmeter_sensor);
+      return {
+        smartmeter_sensor->power_consumption_sensor,
+        smartmeter_sensor->total_consumption_sensor
+      };
+    sensors:
+      - name: ${name} Power Consumption
+        unit_of_measurement: kW
+        accuracy_decimals: 3
+        icon: mdi:power-plug
+      - name: ${name} Total Consumption
+        unit_of_measurement: kWh
+        accuracy_decimals: 3
+        icon: mdi:sigma

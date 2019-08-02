@@ -16,18 +16,18 @@ esphome:
 <<: !include common/sensors.yaml
 
 binary_sensor:
-- !include common/binary_sensor/status.yaml
-- platform: gpio
-  id: manual
-  pin: GPIO5
-  on_state:
-    then:
-    - switch.toggle: outlet
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: manual
+    pin: GPIO5
+    on_state:
+      then:
+        - switch.toggle: outlet
 
 switch:
-- !include common/switch/restart.yaml
-- platform: gpio
-  name: ${name}
-  pin: GPIO4
-  id: outlet
-  icon: mdi:power-socket-eu
+  - !include common/switch/restart.yaml
+  - platform: gpio
+    name: ${name}
+    pin: GPIO4
+    id: outlet
+    icon: mdi:power-socket-eu

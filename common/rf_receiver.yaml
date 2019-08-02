@@ -1,6 +1,6 @@
 ---
 dump:
-- rc_switch
+  - rc_switch
 tolerance: 60%
 filter: 4us
 idle: 4ms

@@ -25,9 +25,9 @@ remote_receiver:
   pin: D6
 
 binary_sensor:
-- platform: remote_receiver
-  <<: !include common/rf_receiver_sensor.yaml
-  name: RF Button Test
-  rc_switch_raw:
-    protocol: 1
-    code: !secret rf_code_test
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Test
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_test
