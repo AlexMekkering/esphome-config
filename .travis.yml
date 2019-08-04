@@ -18,4 +18,4 @@ script:
   - esphome living_1.yaml compile
   - esphome smartmeter.yaml compile
   - esphome ventilation.yaml compile
-  - esphome veranda_wcd.yaml compile
+  - esphome veranda_lights.yaml compile
