@@ -1,9 +1,10 @@
 ---
-# Porch switch, implemented by using a Shelly 1
+# Porch lights, implemented by using a Shelly 1
 # (https://shelly.cloud/shelly1-open-source/)
+
 substitutions:
-  device: veranda_wcd
-  name: Veranda Wandcontactdoos
+  device: veranda_lights
+  name: Veranda Verlichting
   reboot_timeout: 14d
   update_interval: 10min
 
@@ -15,6 +16,7 @@ esphome:
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
 <<: !include common/sensors.yaml
+<<: !include common/switches.yaml
 
 binary_sensor:
   - !include common/binary_sensor/status.yaml
@@ -23,12 +25,15 @@ binary_sensor:
     pin: GPIO5
     on_state:
       then:
-        - switch.toggle: outlet
+        - light.toggle: light1
 
-switch:
-  - !include common/switch/restart.yaml
+output:
   - platform: gpio
-    name: ${name}
     pin: GPIO4
-    id: outlet
-    icon: mdi:power-socket-eu
+    id: relay1
+
+light:
+  - platform: binary
+    output: relay1
+    name: ${name}
+    id: light1
