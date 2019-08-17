@@ -47,6 +47,30 @@ binary_sensor:
     rc_switch_raw:
       protocol: 1
       code: !secret rf_code_bedroom_tv
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Watch TV
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_watch_tv
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Watch Media
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_watch_media
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Listen Music
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_listen_music
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button All Off
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_all_off
 
 output:
   - platform: gpio
