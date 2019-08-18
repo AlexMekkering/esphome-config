@@ -1,6 +1,5 @@
----
-title: My ESPHome Configuration
----
+# My ESPHome Configuration
+
 ![ESPHome](logo-text.svg)
 
 This page is the starting point for all installation and configuration documentation of all my devices which are configured with [ESPHome](https://esphome.io/) .
