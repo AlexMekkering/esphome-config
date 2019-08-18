@@ -1,11 +1,16 @@
+---
+title: My ESPHome Configuration
+---
 ![ESPHome](logo-text.svg)
 
 This page is the starting point for all installation and configuration documentation of all my devices which are configured with [ESPHome](https://esphome.io/) .
 
-# Current setup
+## Current setup
 
-## Common firmware features
+### Common firmware features
+
 The following features are implemented for every device
+
 - [Wifi](https://esphome.io/components/wifi.html) with failover [Access Point Mode](https://esphome.io/components/wifi.html#access-point-mode)
 - [Over The Air](https://esphome.io/components/ota.html) firware updates
 - [Native API](https://esphome.io/components/api.html)
@@ -17,7 +22,7 @@ The following features are implemented for every device
 - [Restart Switch](https://esphome.io/components/switch/restart.html)
 - Update interval of 10 minutes for most sensors to reduce updates
 
-## Device types & specific firmware features
+### Device types & specific firmware features
 
 | Device | Type | Physical button | [GPIO power] | [UART GPIO] | [Script] | [Custom Sensor] |
 | -- | -- |:--:|:--:|:--:|:--:|:--:|
@@ -30,7 +35,7 @@ The following features are implemented for every device
 | [ventilation] | [Sonoff Pow]                | X |   | X | X |   |
 | [veranda_wcd] | [Shelly 1]                  | X |   |   |   |   |
 
-## Sensors
+### Sensors
 
 | Device | [Status LED] | [bme280] ([i2c])  | [dallas] | [hlw8012] | [dht22] | [RF receiver] |
 | -- |:--:|:--:|:--:|:--:|:--:|:--:|
@@ -43,20 +48,26 @@ The following features are implemented for every device
 | [ventilation] | X |   |   | X |   | X |
 | [veranda_wcd] |   |   |   |   |   |   |
 
-# Installation
-## Arch Linux
-### Installing python
+## Installation
+
+### Arch Linux
+
+#### Installing python
+
 Since platformio 4 we can just use python, which can be installed with `pacman -Syu python`.
 
-### Activating a virtual environment with esphome
+#### Activating a virtual environment with esphome
+
 There's an install script. Execute it with `. install.sh`
 > Once setup, the virtual environment can be activated with `. venv/bin/activate`
 
-### Configuring secrets
+#### Configuring secrets
+
 The yaml files refer to secrets which are configured in `secrets.yaml` and `common/secrets.yaml`. These files are not kept in the GIT repository so should be created for a clean clone or checkout.
 For this, you can copy the [Travis Secrets] and [Common Travis Secrets] to the respective `secrets.yaml` files and fill in your secrets.
 
-# Knowledge base
+## Knowledge base
+
 - [Powering sensors](PoweringSensors.md)
 - [Using UART as GPIO](UARTasGPIO.md)
 - [Receiving RF Codes](RFReceiver.md)
