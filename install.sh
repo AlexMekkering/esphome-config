@@ -6,6 +6,9 @@ if [ -z "${VIRTUAL_ENV}" ]; then
   fi
   . $ACTIVATE
 fi
+pip install -U pip setuptools pipenv
 
-pip install -U pip setuptools yamllint esphome
+export PIPENV_VERBOSITY=-1
+pipenv install
+
 pio platform update
