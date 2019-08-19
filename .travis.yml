@@ -9,6 +9,7 @@ before_install:
 install:
   - . install.sh
 script:
+  - pipenv check
   - yamllint .
   - esphome minimal.yaml compile
   - esphome attic_1.yaml compile
