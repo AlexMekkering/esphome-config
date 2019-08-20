@@ -1,8 +1,6 @@
 ---
 dist: bionic
 language: minimal
-python:
-  - "3.7"
 cache: pip
 env:
   matrix:
@@ -16,7 +14,10 @@ env:
     - DEVICE=ventilation
     - DEVICE=veranda_lights
 install:
-  - . install.sh
+  - python3 -m venv venv
+  - . venv/bin/activate
+  - pip install -U pip setuptools pipenv
+  - pipenv update
   - mv .travis-secrets.yaml secrets.yaml
   - mv common/.travis-secrets.yaml common/secrets.yaml
 script: esphome ${DEVICE}.yaml compile
