@@ -1,6 +1,6 @@
 ---
-dist: xenial
-language: python
+dist: bionic
+language: minimal
 python:
   - "3.7"
 cache: pip
