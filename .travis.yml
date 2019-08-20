@@ -14,6 +14,11 @@ env:
     - DEVICE=smartmeter
     - DEVICE=ventilation
     - DEVICE=veranda_lights
+install:
+  - . install.sh
+  - mv .travis-secrets.yaml secrets.yaml
+  - mv common/.travis-secrets.yaml common/secrets.yaml
+script: esphome ${DEVICE}.yaml compile
 jobs:
   include:
     - stage: lint
@@ -29,9 +34,3 @@ jobs:
           - env: DEVICE=smartmeter
           - env: DEVICE=ventilation
           - env: DEVICE=veranda_lights
-    - stage: compile
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome ${DEVICE}.yaml compile
