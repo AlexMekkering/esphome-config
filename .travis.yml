@@ -10,19 +10,19 @@ jobs:
       script: yamllint .
     - stage: compile
       matrix:
-        fats_finish: true
+        fast_finish: true
         include:
-          - env: DEVICE=minimal
-          - env: DEVICE=attic_1
-          - env: DEVICE=bedroom_1
-          - env: DEVICE=bedroom_2
-          - env: DEVICE=garage
-          - env: DEVICE=living_1
-          - env: DEVICE=smartmeter
-          - env: DEVICE=ventilation
-          - env: DEVICE=veranda_lights
+          - name: minimal
+          - name: attic_1
+          - name: bedroom_1
+          - name: bedroom_2
+          - name: garage
+          - name: living_1
+          - name: smartmeter
+          - name: ventilation
+          - name: veranda_lights
       install:
         - . install.sh
         - mv .travis-secrets.yaml secrets.yaml
         - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome ${DEVICE}.yaml compile
+      script: esphome ${TRAVIS_JOB_NAME}.yaml compile
