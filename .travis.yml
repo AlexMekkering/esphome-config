@@ -3,22 +3,33 @@ dist: xenial
 language: python
 python:
   - "3.7"
+env:
+  matrix:
+    - DEVICE=minimal
+    - DEVICE=attic_1
+    - DEVICE=bedroom_1
+    - DEVICE=bedroom_2
+    - DEVICE=garage
+    - DEVICE=living_1
+    - DEVICE=smartmeter
+    - DEVICE=ventilation
+    - DEVICE=veranda_lights
 jobs:
   include:
     - stage: lint
       install: pip install yamllint
       script: yamllint .
+      matrix:
+        exclude:
+          - env: DEVICE=attic_1
+          - env: DEVICE=bedroom_1
+          - env: DEVICE=bedroom_2
+          - env: DEVICE=garage
+          - env: DEVICE=living_1
+          - env: DEVICE=smartmeter
+          - env: DEVICE=ventilation
+          - env: DEVICE=veranda_lights
     - stage: compile
-      env:
-        - DEVICE=minimal
-        - DEVICE=attic_1
-        - DEVICE=bedroom_1
-        - DEVICE=bedroom_2
-        - DEVICE=garage
-        - DEVICE=living_1
-        - DEVICE=smartmeter
-        - DEVICE=ventilation
-        - DEVICE=veranda_lights
       install:
         - . install.sh
         - mv .travis-secrets.yaml secrets.yaml
