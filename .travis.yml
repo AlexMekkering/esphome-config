@@ -9,20 +9,18 @@ jobs:
       install: pip install yamllint
       script: yamllint .
     - stage: compile
-      matrix:
-        fast_finish: true
-        include:
-          - name: minimal
-          - name: attic_1
-          - name: bedroom_1
-          - name: bedroom_2
-          - name: garage
-          - name: living_1
-          - name: smartmeter
-          - name: ventilation
-          - name: veranda_lights
+      env:
+        - DEVICE=minimal
+        - DEVICE=attic_1
+        - DEVICE=bedroom_1
+        - DEVICE=bedroom_2
+        - DEVICE=garage
+        - DEVICE=living_1
+        - DEVICE=smartmeter
+        - DEVICE=ventilation
+        - DEVICE=veranda_lights
       install:
         - . install.sh
         - mv .travis-secrets.yaml secrets.yaml
         - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome ${TRAVIS_JOB_NAME}.yaml compile
+      script: esphome ${DEVICE}.yaml compile
