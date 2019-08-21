@@ -1,7 +1,10 @@
 ---
 dist: bionic
-language: minimal
+language: python
+python: 3.7
 cache: pip
+git:
+  depth: 3
 env:
   matrix:
     - DEVICE=minimal
@@ -13,13 +16,8 @@ env:
     - DEVICE=smartmeter
     - DEVICE=ventilation
     - DEVICE=veranda_lights
-before_install:
-  - sudo apt-get install python3-venv
 install:
-  - python3 -m venv venv
-  - . venv/bin/activate
-  - pip install -U pip setuptools pipenv
-  - pipenv update
+  - . install.sh
   - mv .travis-secrets.yaml secrets.yaml
   - mv common/.travis-secrets.yaml common/secrets.yaml
 script: esphome ${DEVICE}.yaml compile
