@@ -5,7 +5,7 @@ python: 3.7
 cache:
   pip: true
   directories:
-    - $HOME/$DEVICE
+    - $TRAVIS_BUILD_DIR/$DEVICE
 git:
   depth: 3
 env:
@@ -24,5 +24,4 @@ install:
   - mv .travis-secrets.yaml secrets.yaml
   - mv common/.travis-secrets.yaml common/secrets.yaml
 script:
-  - if [ "${DEVICE}" == "minimal" ]; then yamllint .; fi
   - esphome ${DEVICE}.yaml compile
