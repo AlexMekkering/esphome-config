@@ -1,64 +1,26 @@
 ---
-dist: xenial
+dist: bionic
 language: python
-python:
-  - "3.7"
-jobs:
+git:
+  depth: 3
+install:
+  - . install.sh
+  - mv .travis-secrets.yaml secrets.yaml
+  - mv common/.travis-secrets.yaml common/secrets.yaml
+script:
+  - esphome $DEVICE1.yaml compile
+  - esphome $DEVICE2.yaml compile
+  - esphome $DEVICE3.yaml compile
+matrix:
   include:
-    - stage: yamllint
-      install: . install.sh
-      script: yamllint .
-    - stage: minimal
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome minimal.yaml compile
-    - stage: attic_1
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome attic_1.yaml compile
-    - stage: bedroom_1
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome bedroom_1.yaml compile
-    - stage: bedroom_2
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome bedroom_2.yaml compile
-    - stage: garage
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome garage.yaml compile
-    - stage: living_1
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome living_1.yaml compile
-    - stage: smartmeter
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome smartmeter.yaml compile
-    - stage: ventilation
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome ventilation.yaml compile
-    - stage: veranda_lights
-      install:
-        - . install.sh
-        - mv .travis-secrets.yaml secrets.yaml
-        - mv common/.travis-secrets.yaml common/secrets.yaml
-      script: esphome veranda_lights.yaml compile
+    - python: 3.7
+      env: DEVICE1=minimal DEVICE2=attic_1 DEVICE3=ventilation
+      script:
+        - yamllint .
+        - esphome $DEVICE1.yaml compile
+        - esphome $DEVICE2.yaml compile
+        - esphome $DEVICE3.yaml compile
+    - python: 3.7
+      env: DEVICE1=living_1 DEVICE2=smartmeter DEVICE3=veranda_lights
+    - python: 3.7
+      env: DEVICE1=bedroom_1 DEVICE2=bedroom_2 DEVICE3=garage
