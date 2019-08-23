@@ -106,10 +106,10 @@
         },
         "platformio": {
             "hashes": [
-                "sha256:c7716f63c3e1ae8d009c11e24b6092a0b935d591cbd784d690c2b693af07d9e7",
-                "sha256:d37a4022349e1d2eb7babe94fbc62b196b87e94eb43785304f365d06bb74c195"
+                "sha256:36e85084e26f2cb7a7bd1a5815df65b8e36a705240741bf9e2b14ab909710b35",
+                "sha256:461c30b170ed83b5f9327e40b0428ef8c661b67724483f43771fa8e31f99b78a"
             ],
-            "version": "==4.0.0"
+            "version": "==4.0.1"
         },
         "protobuf": {
             "hashes": [
@@ -192,6 +192,12 @@
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
             "version": "==1.12.0"
+        },
+        "tabulate": {
+            "hashes": [
+                "sha256:8af07a39377cee1103a5c8b3330a421c2d99b9141e9cc5ddd2e3263fea416943"
+            ],
+            "version": "==0.8.3"
         },
         "tornado": {
             "hashes": [
