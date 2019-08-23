@@ -1,11 +1,8 @@
 ---
 dist: bionic
 language: python
-python: 3.7
 git:
   depth: 3
-env:
-  - DEVICE1=bedroom_1 DEVICE2=bedroom_2 DEVICE3=garage
 install:
   - . install.sh
   - mv .travis-secrets.yaml secrets.yaml
@@ -17,11 +14,13 @@ script:
 matrix:
   include:
     - python: 3.7
-      env: DEVICE1=living_1 DEVICE2=smartmeter DEVICE3=veranda_lights
-    - python: 3.7
       env: DEVICE1=minimal DEVICE2=attic_1 DEVICE3=ventilation
       script:
         - yamllint .
         - esphome $DEVICE1.yaml compile
         - esphome $DEVICE2.yaml compile
         - esphome $DEVICE3.yaml compile
+    - python: 3.7
+      env: DEVICE1=living_1 DEVICE2=smartmeter DEVICE3=veranda_lights
+    - python: 3.7
+      env: DEVICE1=bedroom_1 DEVICE2=bedroom_2 DEVICE3=garage
