@@ -13,7 +13,7 @@ The following features are implemented for every device
 - [Wifi](https://esphome.io/components/wifi.html) with failover [Access Point Mode](https://esphome.io/components/wifi.html#access-point-mode) and [Captive Portal](https://esphome.io/components/captive_portal.html)
 - [Over The Air](https://esphome.io/components/ota.html) firware updates
 - [Native API](https://esphome.io/components/api.html)
-- [Web Server](https://esphome.io/components/web_server.html)
+- [Web Server](https://esphome.io/components/web_server.html) with basic authentication
 - [Status Binary Sensor](https://esphome.io/components/binary_sensor/status.html)
 - [Wifi Info Text Sensor](https://esphome.io/components/text_sensor/wifi_info.html) (IP, SSID & BSSID)
 - [Version Text Sensor](https://esphome.io/components/text_sensor/version.html)
