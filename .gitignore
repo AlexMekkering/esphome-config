@@ -1,4 +1,4 @@
-secrets.yaml
+/secrets.yaml
 **/
 !common/
 !docs/

@@ -6,7 +6,6 @@ git:
 install:
   - . install.sh
   - mv .travis-secrets.yaml secrets.yaml
-  - mv common/.travis-secrets.yaml common/secrets.yaml
 script:
   - esphome $DEVICE1.yaml compile
   - esphome $DEVICE2.yaml compile

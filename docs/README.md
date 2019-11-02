@@ -62,8 +62,8 @@ There's an install script. Execute it with `. install.sh`
 
 #### Configuring secrets
 
-The yaml files refer to secrets which are configured in `secrets.yaml` and `common/secrets.yaml`. These files are not kept in the GIT repository so should be created for a clean clone or checkout.
-For this, you can copy the [Travis Secrets] and [Common Travis Secrets] to the respective `secrets.yaml` files and fill in your secrets.
+The yaml files refer to secrets which are configured in `secrets.yaml`. This file is not kept in the GIT repository so should be created after a clean clone.
+For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your secrets.
 
 ## Knowledge base
 
