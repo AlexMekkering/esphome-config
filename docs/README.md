@@ -10,7 +10,7 @@ This page is the starting point for all installation and configuration documenta
 
 The following features are implemented for every device
 
-- [Wifi](https://esphome.io/components/wifi.html) with failover [Access Point Mode](https://esphome.io/components/wifi.html#access-point-mode)
+- [Wifi](https://esphome.io/components/wifi.html) with failover [Access Point Mode](https://esphome.io/components/wifi.html#access-point-mode) and [Captive Portal](https://esphome.io/components/captive_portal.html)
 - [Over The Air](https://esphome.io/components/ota.html) firware updates
 - [Native API](https://esphome.io/components/api.html)
 - [Web Server](https://esphome.io/components/web_server.html)
