@@ -8,7 +8,6 @@ verify_ssl = true
 [packages]
 yamllint = "*"
 esphome = "*"
-voluptuous = "==0.11.5"
 
 [requires]
 python_version = "3.7"
