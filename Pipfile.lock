@@ -67,11 +67,11 @@
         },
         "esphome": {
             "hashes": [
-                "sha256:7c9feb68e2fb86da372ca5ed285e812e477f8ea70eb06d877163e92c6777a8c0",
-                "sha256:bb1cc9cacfa83788c483004c09e7cfe6bc01e2cfdd33aa28e785a004768f11d0"
+                "sha256:4c1344619245729876c0f7018d11d0e0b3b3885194b84063a87d62287fd64252",
+                "sha256:98f919dec05193ec25983b8a2fcb754418e0418d90338f7f2bc4566a66c0dccf"
             ],
             "index": "pypi",
-            "version": "==1.14.0"
+            "version": "==1.14.2"
         },
         "esptool": {
             "hashes": [
