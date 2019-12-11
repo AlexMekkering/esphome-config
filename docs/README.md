@@ -33,6 +33,7 @@ The following features are implemented for every device
 | [smartmeter]  | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   | X |
 | [ventilation] | [Sonoff Pow]                | X |   | X | X |   |
 | [veranda_wcd] | [Shelly 1]                  | X |   |   |   |   |
+| [xmas_1]      | [Sonoff Dual R1]            | X |   |   |   | X |
 
 ### Sensors
 
@@ -46,6 +47,7 @@ The following features are implemented for every device
 | [smartmeter]  | X | X |   |   |   |   |
 | [ventilation] | X |   |   | X |   | X |
 | [veranda_wcd] |   |   |   |   |   |   |
+| [xmas_1]      | X |   |   |   |   |   |
 
 ## Installation
 
@@ -81,6 +83,7 @@ For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your s
 [smartmeter]: https://github.com/AlexMekkering/esphome-config/blob/master/smartmeter.yaml
 [ventilation]: https://github.com/AlexMekkering/esphome-config/blob/master/ventilation.yaml
 [veranda_wcd]: https://github.com/AlexMekkering/esphome-config/blob/master/veranda_wcd.yaml
+[xmas_1]: https://github.com/AlexMekkering/esphome-config/blob/master/christmas_1.yaml
 [Sonoff S20]: https://www.itead.cc/smart-socket.html
 [NodeMCU v2]: https://github.com/nodemcu/nodemcu-devkit-v1.0
 [Wemos D1 mini Pro v1.0.0]: https://wiki.wemos.cc/products:retired:d1_mini_pro_v1.0.0
@@ -88,6 +91,7 @@ For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your s
 [Sonoff 4CH R2]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff 4CH Pro]: https://www.itead.cc/sonoff-4ch-pro.html
 [Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
+[Sonoff Dual R1]: https://www.itead.cc/sonoff-dual.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
 [Script]: https://esphome.io/guides/automations.html#script-execute-action
 [Custom Sensor]: https://esphome.io/components/sensor/custom.html

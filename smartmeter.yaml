@@ -11,7 +11,7 @@ esphome:
   platform: ESP8266
   board: d1_mini_pro
   includes:
-    - smartmeter.h
+    - ${device}.h
   on_boot:
     - priority: 90
       then:

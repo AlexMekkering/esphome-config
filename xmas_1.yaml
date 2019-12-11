@@ -1,0 +1,57 @@
+---
+substitutions:
+  device: xmas_1
+  name: Kerstboom
+  reboot_timeout: 14d
+  update_interval: 10min
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: esp01_1m
+  includes:
+    - ${device}.h
+
+<<: !include common/common.yaml
+<<: !include common/sensors.yaml
+
+logger:
+  level: INFO
+  hardware_uart: UART1  # UART0 - slave controller for relay
+
+status_led:
+  pin:
+    number: GPIO13
+    inverted: true
+
+uart:
+  id: sil_f330
+  tx_pin: GPIO01
+  rx_pin: GPIO03
+  baud_rate: 19200
+
+switch:
+  - !include common/switch/restart.yaml
+  - platform: template
+    name: ${name}
+    id: kerstboom
+    icon: mdi:pine-tree
+    turn_on_action:
+      uart.write: [0xA0, 0x04, 0x01, 0xA1]
+    turn_off_action:
+      uart.write: [0xA0, 0x04, 0x00, 0xA1]
+    optimistic: true
+
+binary_sensor:
+  - !include common/binary_sensor/status.yaml
+  - platform: custom
+    lambda: |-
+      auto button = new SilF330Button(id(sil_f330));
+      App.register_component(button);
+      return {button};
+
+    binary_sensors:
+      id: button
+      on_press:
+        then:
+          - switch.toggle: kerstboom

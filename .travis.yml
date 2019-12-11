@@ -13,12 +13,13 @@ script:
 matrix:
   include:
     - python: 3.8
-      env: DEVICE1=minimal DEVICE2=attic_1 DEVICE3=ventilation
+      env: DEVICE1=minimal DEVICE2=attic_1 DEVICE3=ventilation DEVICE4=xmas_1
       script:
         - yamllint .
         - esphome $DEVICE1.yaml compile
         - esphome $DEVICE2.yaml compile
         - esphome $DEVICE3.yaml compile
+        - esphome $DEVICE4.yaml compile
     - python: 3.8
       env: DEVICE1=living_1 DEVICE2=smartmeter DEVICE3=veranda_lights
     - python: 3.8
