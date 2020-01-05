@@ -18,9 +18,14 @@ logger:
   level: INFO
   baud_rate: 0
 
+uart:
+  rx_pin: RX
+  baud_rate: 4800
+
 status_led:
   pin:
-    number: GPIO15
+    number: GPIO13
+    inverted: true
 
 globals:
   - id: activated
@@ -47,15 +52,12 @@ script:
 
 remote_receiver:
   <<: !include common/rf_receiver.yaml
-  pin: RX
+  pin: GPIO4
 
 sensor:
   - !include common/sensor/wifi-signal.yaml
   - !include common/sensor/uptime.yaml
-  - platform: hlw8012
-    sel_pin: 5
-    cf_pin: 14
-    cf1_pin: 13
+  - platform: cse7766
     current:
       name: ${name} Current
       icon: mdi:current-ac

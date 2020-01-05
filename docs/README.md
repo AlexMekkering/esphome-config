@@ -31,13 +31,13 @@ The following features are implemented for every device
 | [garage]      | [Wemos D1 mini Pro v1.0.0]  |   |   |   |   |   |
 | [living_1]    | [Sonoff 4CH]                | X |   | X |   |   |
 | [smartmeter]  | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   | X |
-| [ventilation] | [Sonoff Pow]                | X |   | X | X |   |
+| [ventilation] | [Sonoff Pow R2]             | X |   |   | X |   |
 | [veranda_wcd] | [Shelly 1]                  | X |   |   |   |   |
 | [xmas_1]      | [Sonoff Dual R1]            | X |   |   |   | X |
 
 ### Sensors
 
-| Device | [Status LED] | [bme280] ([i2c])  | [dallas] | [hlw8012] | [dht22] | [RF receiver] |
+| Device | [Status LED] | [bme280] ([i2c])  | [dallas] | [CSE7766] | [dht22] | [RF receiver] |
 | -- |:--:|:--:|:--:|:--:|:--:|:--:|
 | [attic_1]     | X |   |   |   |   | X |
 | [bedroom_1]   |   | X |   |   |   |   |
@@ -90,7 +90,7 @@ For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your s
 [Sonoff 4CH]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff 4CH R2]: https://www.itead.cc/sonoff-4ch.html
 [Sonoff 4CH Pro]: https://www.itead.cc/sonoff-4ch-pro.html
-[Sonoff Pow]: https://www.itead.cc/sonoff-pow.html
+[Sonoff Pow R2]: https://www.itead.cc/sonoff-pow-r2.html
 [Sonoff Dual R1]: https://www.itead.cc/sonoff-dual.html
 [Shelly 1]: https://shelly.cloud/shelly1-open-source/
 [Script]: https://esphome.io/guides/automations.html#script-execute-action
@@ -101,6 +101,6 @@ For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your s
 [bme280]: https://esphome.io/components/sensor/bme280.html
 [i2c]: https://esphome.io/components/i2c.html
 [dallas]: https://esphome.io/components/sensor/dallas.html
-[hlw8012]: https://esphome.io/components/sensor/hlw8012.html
+[CSE7766]: https://esphome.io/components/sensor/cse7766.html
 [dht22]: https://esphome.io/components/sensor/dht.html
 [RF Receiver]: RFReceiver.md
