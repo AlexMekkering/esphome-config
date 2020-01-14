@@ -6,9 +6,6 @@ if [ -z "${VIRTUAL_ENV}" ]; then
   fi
   . $ACTIVATE
 fi
-pip install -U pip setuptools pipenv
-
-export PIPENV_VERBOSITY=-1
-pipenv install
+pip install -r requirements.txt
 
 pio platform update
