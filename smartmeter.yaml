@@ -12,16 +12,9 @@ esphome:
   board: d1_mini_pro
   includes:
     - ${device}.h
-  on_boot:
-    - priority: 90
-      then:
-        - output.turn_on: sm_supply
-        - output.turn_off: bme_gnd
 
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
-<<: !include common/binary_sensors.yaml
-<<: !include common/switches.yaml
 
 status_led:
   pin:
@@ -31,17 +24,6 @@ status_led:
 i2c:
   sda: D2
   scl: D1
-
-output:
-  - platform: gpio
-    pin: D3
-    id: bme_gnd
-  - platform: gpio
-    pin: D5
-    id: sm_gnd
-  - platform: gpio
-    pin: D7
-    id: sm_supply
 
 sensor:
   - !include common/sensor/wifi-signal.yaml
@@ -62,3 +44,53 @@ sensor:
         unit_of_measurement: kWh
         accuracy_decimals: 3
         icon: mdi:sigma
+
+globals:
+  - id: chime
+    type: bool
+    restore_value: true
+    initial_value: 'true'
+
+switch:
+  - !include common/switch/restart.yaml
+  - platform: gpio
+    id: relay
+    name: Gong
+    pin: D7
+    inverted: true
+  - platform: template
+    name: Deurbel actief
+    id: chime_active
+    restore_state: false
+    turn_on_action:
+      - globals.set:
+          id: chime
+          value: 'true'
+    turn_off_action:
+      - globals.set:
+          id: chime
+          value: 'false'
+    lambda: |-
+      return id(chime);
+
+binary_sensor:
+  - !include common/binary_sensor/status.yaml
+  - platform: gpio
+    id: button
+    name: Deurbel
+    pin:
+      number: D5
+      mode: INPUT_PULLUP
+      inverted: true
+    filters:
+      - delayed_on: 25ms
+      - delayed_off: 25ms
+    on_press:
+      then:
+        if:
+          condition:
+            - switch.is_on: chime_active
+          then:
+            - switch.turn_on: relay
+    on_release:
+      - switch.turn_off: relay
