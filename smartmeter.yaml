@@ -56,10 +56,12 @@ switch:
   - platform: gpio
     id: relay
     name: Gong
+    icon: mdi:alarm-bell
     pin: D7
     inverted: true
   - platform: template
     name: Deurbel actief
+    icon: mdi:doorbell
     id: chime_active
     restore_state: false
     turn_on_action:
