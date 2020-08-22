@@ -7,5 +7,3 @@ if [ -z "${VIRTUAL_ENV}" ]; then
   . $ACTIVATE
 fi
 pip install -r requirements.txt
-
-pio platform update
