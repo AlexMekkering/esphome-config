@@ -1,5 +1,4 @@
 ---
-dist: focal
 language: python
 git:
   depth: 3
