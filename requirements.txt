@@ -29,7 +29,7 @@ starlette==0.14.2
 tabulate==0.8.7
 tornado==6.1
 tzlocal==2.1
-urllib3==1.26.3
+urllib3==1.26.5
 uvicorn==0.13.4
 voluptuous==0.12.1
 wsproto==1.0.0
