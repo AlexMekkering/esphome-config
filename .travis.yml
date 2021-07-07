@@ -5,9 +5,9 @@ git:
   depth: 3
 script:
   - mv .travis-secrets.yaml secrets.yaml
-  - esphome $DEVICE1.yaml compile
-  - esphome $DEVICE2.yaml compile
-  - esphome $DEVICE3.yaml compile
+  - esphome compile $DEVICE1.yaml
+  - esphome compile $DEVICE2.yaml
+  - esphome compile $DEVICE3.yaml
 matrix:
   include:
     - python: 3.9
@@ -15,10 +15,10 @@ matrix:
       script:
         - mv .travis-secrets.yaml secrets.yaml
         - yamllint .
-        - esphome $DEVICE1.yaml compile
-        - esphome $DEVICE2.yaml compile
-        - esphome $DEVICE3.yaml compile
-        - esphome $DEVICE4.yaml compile
+        - esphome compile $DEVICE1.yaml
+        - esphome compile $DEVICE2.yaml
+        - esphome compile $DEVICE3.yaml
+        - esphome compile $DEVICE4.yaml
     - python: 3.9
       env: DEVICE1=living_1 DEVICE2=smartmeter DEVICE3=veranda_lights
     - python: 3.9
