@@ -7,7 +7,8 @@ click==7.1.2
 colorama==0.4.4
 colorlog==4.6.2
 ecdsa==0.16.1
-esphome==1.18.0
+esphome==1.19.4
+esphome-dashboard==20210623.0
 esptool==2.8
 h11==0.12.0
 idna==2.10
@@ -16,7 +17,7 @@ marshmallow==3.10.0
 paho-mqtt==1.5.1
 pathspec==0.8.1
 platformio==5.1.1
-protobuf==3.15.8
+protobuf==3.17.0
 pyaes==1.6.1
 pyelftools==0.27
 pyserial==3.5
