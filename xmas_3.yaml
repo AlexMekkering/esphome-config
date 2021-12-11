@@ -1,0 +1,8 @@
+---
+substitutions:
+  device: xmas-3
+  name: Kerstverlichting voor
+  reboot_timeout: 14d
+  update_interval: 10min
+
+<<: !include _s20.yaml
