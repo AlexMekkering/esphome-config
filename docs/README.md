@@ -25,29 +25,29 @@ The following features are implemented for every device
 
 | Device | Type | Physical button | [GPIO power] | [UART GPIO] | [Script] | [Custom Sensor] |
 | -- | -- |:--:|:--:|:--:|:--:|:--:|
-| [attic_1]     | [Sonoff 4CH R2]             | X |   |   |   |   |
-| [bedroom_1]   | [Sonoff 4CH Pro]            | X |   | X |   |   |
-| [bedroom_2]   | [Sonoff S20]                | X |   | X |   |   |
-| [garage]      | [Wemos D1 mini Pro v1.0.0]  |   |   |   |   |   |
-| [living_1]    | [Sonoff 4CH]                | X |   | X |   |   |
-| [smartmeter]  | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   | X |
-| [ventilation] | [Sonoff Pow R2]             | X |   |   | X |   |
-| [veranda_wcd] | [Shelly 1]                  | X |   |   |   |   |
-| [xmas_1]      | [Sonoff Dual R1]            | X |   |   |   | X |
+| [attic_1]        | [Sonoff 4CH R2]             | X |   |   |   |   |
+| [bedroom_1]      | [Sonoff 4CH Pro]            | X |   | X |   |   |
+| [bedroom_2]      | [Sonoff S20]                | X |   | X |   |   |
+| [garage]         | [Wemos D1 mini Pro v1.0.0]  |   | X |   |   |   |
+| [living_1]       | [Sonoff 4CH]                | X |   | X |   |   |
+| [ventilation]    | [Sonoff Pow R2]             | X |   |   | X |   |
+| [veranda_lights] | [Shelly 1]                  | X |   |   |   |   |
+| [xmas_1]         | [Sonoff Dual R1]            | X |   |   |   | X |
+| [xmas_2]         | [Sonoff S26]                | X |   |   |   |   |
 
 ### Sensors
 
 | Device | [Status LED] | [bme280] ([i2c])  | [dallas] | [CSE7766] | [dht22] | [RF receiver] |
 | -- |:--:|:--:|:--:|:--:|:--:|:--:|
-| [attic_1]     | X |   |   |   |   | X |
-| [bedroom_1]   |   | X |   |   |   |   |
-| [bedroom_2]   |   |   |   |   |   | X |
-| [garage]      | X |   | X |   | X |   |
-| [living_1]    | X | X |   |   |   |   |
-| [smartmeter]  | X | X |   |   |   |   |
-| [ventilation] | X |   |   | X |   | X |
-| [veranda_wcd] |   |   |   |   |   |   |
-| [xmas_1]      | X |   |   |   |   |   |
+| [attic_1]        | X |   |   |   |   | X |
+| [bedroom_1]      |   | X |   |   |   |   |
+| [bedroom_2]      |   |   |   |   |   | X |
+| [garage]         | X |   | X |   | X |   |
+| [living_1]       | X | X |   |   |   |   |
+| [ventilation]    | X |   |   | X |   | X |
+| [veranda_lights] |   |   |   |   |   |   |
+| [xmas_1]         | X |   |   |   |   |   |
+| [xmas_2]         | X |   |   |   |   |   |
 
 ## Installation
 
@@ -80,11 +80,12 @@ For this, you can copy the [Travis Secrets] to `secrets.yaml` and fill in your s
 [bedroom_2]: https://github.com/AlexMekkering/esphome-config/blob/master/bedroom_2.yaml
 [garage]: https://github.com/AlexMekkering/esphome-config/blob/master/garage.yaml
 [living_1]: https://github.com/AlexMekkering/esphome-config/blob/master/living_1.yaml
-[smartmeter]: https://github.com/AlexMekkering/esphome-config/blob/master/smartmeter.yaml
 [ventilation]: https://github.com/AlexMekkering/esphome-config/blob/master/ventilation.yaml
-[veranda_wcd]: https://github.com/AlexMekkering/esphome-config/blob/master/veranda_wcd.yaml
-[xmas_1]: https://github.com/AlexMekkering/esphome-config/blob/master/christmas_1.yaml
+[veranda_lights]: https://github.com/AlexMekkering/esphome-config/blob/master/veranda_lights.yaml
+[xmas_1]: https://github.com/AlexMekkering/esphome-config/blob/master/xmas_1.yaml
+[xmas_2]: https://github.com/AlexMekkering/esphome-config/blob/master/xmas_2.yaml
 [Sonoff S20]: https://www.itead.cc/smart-socket.html
+[Sonoff S26]: https://sonoff.tech/product/smart-plug/s26
 [NodeMCU v2]: https://github.com/nodemcu/nodemcu-devkit-v1.0
 [Wemos D1 mini Pro v1.0.0]: https://wiki.wemos.cc/products:retired:d1_mini_pro_v1.0.0
 [Sonoff 4CH]: https://www.itead.cc/sonoff-4ch.html
