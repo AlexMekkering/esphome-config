@@ -1,4 +1,4 @@
-aioesphomeapi==10.6.0
+aioesphomeapi==10.8.2
 aiofiles==0.8.0
 ajsonrpc==1.2.0
 anyio==3.5.0
@@ -7,13 +7,13 @@ bitstring==3.1.9
 bottle==0.12.19
 certifi==2021.10.8
 cffi==1.15.0
-charset-normalizer==2.0.10
+charset-normalizer==2.0.12
 click==8.0.3
 colorama==0.4.4
 cryptography==36.0.1
 ecdsa==0.17.0
-esphome==2022.1.1
-esphome-dashboard==20220116.0
+esphome==2022.2.1
+esphome-dashboard==20220209.0
 esptool==3.2
 h11==0.13.0
 idna==3.3
@@ -24,9 +24,9 @@ noiseprotocol==0.3.1
 paho-mqtt==1.6.1
 pathspec==0.9.0
 platformio==5.2.4
-protobuf==3.19.3
+protobuf==3.19.4
 pycparser==2.21
-pyelftools==0.27
+pyelftools==0.28
 pyserial==3.5
 pytz-deprecation-shim==0.1.0.post0
 PyYAML==6.0
