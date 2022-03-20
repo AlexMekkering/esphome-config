@@ -3,3 +3,4 @@ web_server:
   auth:
     username: admin
     password: !secret web_password
+  local: true

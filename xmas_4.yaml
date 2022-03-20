@@ -1,7 +1,7 @@
 ---
 substitutions:
   device: xmas-4
-  name: Kerstverlichting achter
+  name: Kerstverlichting Achter
   reboot_timeout: 14d
   update_interval: 10min
 
