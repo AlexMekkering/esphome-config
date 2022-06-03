@@ -4,7 +4,7 @@ ajsonrpc==1.2.0
 anyio==3.5.0
 asgiref==3.5.1
 bitstring==3.1.9
-bottle==0.12.19
+bottle==0.12.20
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
