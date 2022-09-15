@@ -10,8 +10,6 @@ esphome:
   name: ${device}
   platform: ESP8266
   board: d1_mini_pro
-  includes:
-    - ${device}.h
 
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
@@ -29,21 +27,24 @@ sensor:
   - !include common/sensor/wifi-signal.yaml
   - !include common/sensor/uptime.yaml
   - !include common/sensor/bme280.yaml
-  - platform: custom
-    lambda: |
-      auto smartmeter_sensor = new SmartMeterSensor(12, 10000, 1000.0);
-      App.register_component(smartmeter_sensor);
-      return { smartmeter_sensor->power_consumption_sensor,
-               smartmeter_sensor->total_consumption_sensor };
-    sensors:
-      - name: ${name} Power Consumption
-        unit_of_measurement: kW
-        accuracy_decimals: 3
-        icon: mdi:power-plug
-      - name: ${name} Total Consumption
-        unit_of_measurement: kWh
-        accuracy_decimals: 3
-        icon: mdi:sigma
+  - platform: pulse_meter
+    pin: D6
+    unit_of_measurement: kW
+    name: ${name} Power Consumption
+    state_class: measurement
+    device_class: power
+    accuracy_decimals: 3
+    internal_filter: 200ms
+    filters:
+      - multiply: 0.06
+    total:
+      name: ${name} Total Consumption
+      unit_of_measurement: kWh
+      state_class: total_increasing
+      device_class: energy
+      accuracy_decimals: 3
+      filters:
+        - multiply: 0.001
 
 globals:
   - id: chime
