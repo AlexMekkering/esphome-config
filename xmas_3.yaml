@@ -5,4 +5,4 @@ substitutions:
   reboot_timeout: 14d
   update_interval: 10min
 
-<<: !include _s20.yaml
+<<: !include .s20.yaml

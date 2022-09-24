@@ -1,4 +1,4 @@
-aioesphomeapi==10.11.0
+aioesphomeapi==10.13.0
 aiofiles==0.8.0
 ajsonrpc==1.2.0
 anyio==3.6.1
@@ -13,8 +13,8 @@ click==8.1.3
 colorama==0.4.5
 cryptography==38.0.1
 ecdsa==0.18.0
-esphome==2022.8.3
-esphome-dashboard==20220508.0
+esphome==2022.9.1
+esphome-dashboard==20220920.1
 esptool==3.3.1
 h11==0.13.0
 idna==3.4
@@ -48,4 +48,4 @@ uvicorn==0.17.6
 voluptuous==0.13.1
 wsproto==1.1.0
 yamllint==1.28.0
-zeroconf==0.39.0
+zeroconf==0.39.1
