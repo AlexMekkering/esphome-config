@@ -8,8 +8,6 @@ substitutions:
 
 esphome:
   name: ${device}
-  platform: ESP8266
-  board: d1_mini_pro
 
 <<: !include common/common.yaml
 <<: !include common/logger.yaml
@@ -22,6 +20,23 @@ status_led:
 i2c:
   sda: D2
   scl: D1
+
+esp8266:
+  board: d1_mini_pro
+  restore_from_flash: true
+
+preferences:
+  flash_write_interval: ${update_interval}
+
+globals:
+  - id: total_Wh
+    type: int
+    restore_value: true
+    initial_value: '32680'
+  - id: chime
+    type: bool
+    restore_value: true
+    initial_value: 'true'
 
 sensor:
   - !include common/sensor/wifi-signal.yaml
@@ -37,20 +52,21 @@ sensor:
     internal_filter: 200ms
     filters:
       - multiply: 0.06
-    total:
-      name: ${name} Total Consumption
-      unit_of_measurement: kWh
-      state_class: total_increasing
-      device_class: energy
-      accuracy_decimals: 3
-      filters:
-        - multiply: 0.001
-
-globals:
-  - id: chime
-    type: bool
-    restore_value: true
-    initial_value: 'true'
+    on_raw_value:
+      then:
+        - lambda: |-
+            id(total_Wh) += 1;
+  - platform: template
+    name: ${name} Total Consumption
+    unit_of_measurement: kWh
+    state_class: total_increasing
+    device_class: energy
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+    lambda: |-
+      return id(total_Wh);
+    update_interval: ${update_interval}
 
 switch:
   - !include common/switch/restart.yaml
