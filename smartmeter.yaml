@@ -32,11 +32,21 @@ globals:
   - id: total_Wh
     type: int
     restore_value: true
-    initial_value: '32680'
   - id: chime
     type: bool
     restore_value: true
-    initial_value: 'true'
+
+script:
+  - id: ring
+    mode: restart
+    then:
+      if:
+        condition:
+          - switch.is_on: chime_active
+        then:
+          - switch.turn_on: relay
+          - delay: 300ms
+          - switch.turn_off: relay
 
 sensor:
   - !include common/sensor/wifi-signal.yaml
@@ -74,8 +84,9 @@ switch:
     id: relay
     name: Gong
     icon: mdi:alarm-bell
-    pin: D7
-    inverted: true
+    pin:
+      number: D7
+      inverted: true
   - platform: template
     name: Deurbel actief
     icon: mdi:doorbell
@@ -102,14 +113,9 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: true
     filters:
-      - delayed_on: 25ms
-      - delayed_off: 25ms
+      - delayed_on: 10ms
+      - delayed_off: 100ms
     on_press:
-      then:
-        if:
-          condition:
-            - switch.is_on: chime_active
-          then:
-            - switch.turn_on: relay
+      - script.execute: ring
     on_release:
       - switch.turn_off: relay
