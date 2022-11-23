@@ -1,6 +1,6 @@
 ---
 substitutions:
-  device: xmas_1
+  device: xmas-1
   name: Kerstboom
   reboot_timeout: 14d
   update_interval: 10min
