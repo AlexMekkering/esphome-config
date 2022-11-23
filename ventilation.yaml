@@ -98,6 +98,18 @@ binary_sensor:
     on_press:
       then:
         - switch.turn_on: fan
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Kantoor Lights
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_kantoor_lights
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Kantoor Power
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_kantoor_power
 
 switch:
   - !include common/switch/restart.yaml
