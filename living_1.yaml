@@ -1,6 +1,6 @@
 ---
 substitutions:
-  device: living_1
+  device: living-1
   name: TV Meubel
   location: Woonkamer
   reboot_timeout: 14d

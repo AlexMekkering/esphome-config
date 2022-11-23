@@ -1,6 +1,6 @@
 ---
 substitutions:
-  device: bedroom_1
+  device: bedroom-1
   name: Slaapkamer
   location: ${name}
   reboot_timeout: 14d

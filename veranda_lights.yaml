@@ -3,7 +3,7 @@
 # (https://shelly.cloud/shelly1-open-source/)
 
 substitutions:
-  device: veranda_lights
+  device: veranda-lights
   name: Veranda Verlichting
   reboot_timeout: 14d
   update_interval: 10min

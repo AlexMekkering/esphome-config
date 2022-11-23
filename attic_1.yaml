@@ -1,6 +1,6 @@
 ---
 substitutions:
-  device: attic_1
+  device: attic-1
   name: Zolder
   reboot_timeout: 14d
   update_interval: 10min
