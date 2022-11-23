@@ -1,6 +1,6 @@
 ---
 substitutions:
-  device: bedroom_2
+  device: bedroom-2
   name: Slaapkamer Achterwand
   reboot_timeout: 14d
   update_interval: 10min
