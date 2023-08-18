@@ -1,0 +1,67 @@
+---
+substitutions:
+  device: rf-zwave-bridge
+  name: RF ZWave Bridge
+  reboot_timeout: 14d
+  update_interval: 10min
+
+esphome:
+  name: ${device}
+  platform: ESP8266
+  board: nodemcuv2
+
+<<: !include common/common.yaml
+<<: !include common/sensors.yaml
+<<: !include common/logger.yaml
+
+status_led:
+  pin:
+    number: LED
+    inverted: true
+
+remote_receiver:
+  <<: !include common/rf_receiver.yaml
+  pin: D5
+
+binary_sensor:
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Ventilation
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_ventilation
+    on_press:
+      then:
+        - switch.turn_on: ventilation
+        - delay: 2000 ms
+        - switch.turn_off: ventilation
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Office Lights
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_kantoor_lights
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Office Power
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_kantoor_power
+
+button:
+  - platform: restart
+    name: ${name} Restart
+
+switch:
+  - platform: gpio
+    pin:
+      number: D6
+      inverted: false
+    name: ${name} Ventilation
+    id: ventilation
+  - platform: gpio
+    pin:
+      number: D7
+      inverted: true
+    name: ${name} Office
+    id: office
