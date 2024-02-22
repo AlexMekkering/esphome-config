@@ -1,5 +1,5 @@
 ---
-platform: bme280
+platform: bme280_i2c
 temperature:
   name: ${location} Temperatuur
 pressure:
