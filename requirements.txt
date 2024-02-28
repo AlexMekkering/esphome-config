@@ -5,7 +5,7 @@ anyio==3.6.2
 async-timeout==4.0.2
 bitstring==4.0.1
 bottle==0.12.23
-certifi==2022.9.24
+certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==2.1.1
 click==8.1.3
