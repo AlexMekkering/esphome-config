@@ -1,0 +1,105 @@
+substitutions:
+  name: esp32-bluetooth-proxy-800c8c
+  friendly_name: Bluetooth Proxy 800c8c
+  device: esp32-bluetooth-proxy-800c8c
+  location: Woonkamer
+  reboot_timeout: 1h
+  update_interval: 10min
+
+packages:
+  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic/esp32-generic.yaml@main
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+api:
+  encryption:
+    key: j3lzAnayNf4TeE6VBah7XOjsidDHrNtV0GNjAIWy03I=
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+i2c:
+
+ota:
+  platform: esphome
+
+remote_receiver:
+  <<: !include common/rf_receiver.yaml
+  pin: 17
+
+switch:
+  - platform: gpio
+    pin:
+      number: 13
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 1
+    id: zwave_input_1
+  - platform: gpio
+    pin:
+      number: 12
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 2
+    id: zwave_input_2
+  - platform: gpio
+    pin:
+      number: 14
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 3
+    id: zwave_input_3
+
+sensor:
+  - !include common/sensor/wifi-signal.yaml
+  - !include common/sensor/uptime.yaml
+  - !include common/sensor/bme280.yaml
+
+binary_sensor:
+  - !include common/binary_sensor/status.yaml
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    id: rf_button_keuken_verlichting
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_keuken_verlichting
+    on_press:
+      then:
+        - switch.toggle: zwave_input_1
+  # - platform: remote_receiver
+  #   <<: !include common/rf_receiver_sensor.yaml
+  #   name: RF Button Watch TV
+  #   rc_switch_raw:
+  #     protocol: 1
+  #     code: !secret rf_code_watch_tv
+  # - platform: remote_receiver
+  #   <<: !include common/rf_receiver_sensor.yaml
+  #   name: RF Button Watch Media
+  #   rc_switch_raw:
+  #     protocol: 1
+  #     code: !secret rf_code_watch_media
+  # - platform: remote_receiver
+  #   <<: !include common/rf_receiver_sensor.yaml
+  #   name: RF Button Listen Music
+  #   rc_switch_raw:
+  #     protocol: 1
+  #     code: !secret rf_code_listen_music
+  # - platform: remote_receiver
+  #   <<: !include common/rf_receiver_sensor.yaml
+  #   name: RF Button All Off
+  #   rc_switch_raw:
+  #     protocol: 1
+  #     code: !secret rf_code_all_off

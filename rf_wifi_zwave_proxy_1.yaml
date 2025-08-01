@@ -1,0 +1,106 @@
+---
+substitutions:
+  device: rf-wifi-zwave-proxy-1
+  name: RF Wifi ZWave Proxy 1
+  reboot_timeout: 14d
+  update_interval: 10min
+
+esphome:
+  name: ${device}
+
+esp8266:
+  board: nodemcuv2
+
+<<: !include common/common.yaml
+<<: !include common/sensors.yaml
+<<: !include common/logger.yaml
+
+status_led:
+  pin:
+    number: LED
+    inverted: true
+
+remote_receiver:
+  <<: !include common/rf_receiver.yaml
+  pin: D6
+
+button:
+  - platform: restart
+    name: ${name} Restart
+
+switch:
+  - platform: gpio
+    pin:
+      number: D5
+      inverted: false
+    name: ${name} Ventilation
+    id: ventilation
+  - platform: gpio
+    pin:
+      number: D1
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 1
+    id: zwave_input_1
+  - platform: gpio
+    pin:
+      number: D2
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 2
+    id: zwave_input_2
+  - platform: gpio
+    pin:
+      number: D7
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 3
+    id: zwave_input_3
+  - platform: gpio
+    pin:
+      number: D8
+      inverted: true
+      mode:
+        output: true
+        open_drain: true
+        pullup: false
+    name: ${name} Input 4
+    id: zwave_input_4
+
+binary_sensor:
+  - !include common/binary_sensor/status.yaml
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button Ventilation
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_ventilation
+    on_press:
+      then:
+        - switch.turn_on: ventilation
+        - delay: 2000 ms
+        - switch.turn_off: ventilation
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    id: rf_button_bedroom_back_wall
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_bedroom_back_wall
+    on_press:
+      then:
+        - switch.toggle: zwave_input_1
+  - platform: remote_receiver
+    <<: !include common/rf_receiver_sensor.yaml
+    name: RF Button TV Slaapkamer
+    rc_switch_raw:
+      protocol: 1
+      code: !secret rf_code_bedroom_tv
