@@ -1,6 +1,7 @@
 ---
 substitutions:
   device: xmas-2
+  location: Garage
   name: Kerstverlichting Buiten
   reboot_timeout: 14d
   update_interval: 10min
